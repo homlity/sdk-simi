@@ -1,0 +1,28 @@
+{
+    "name": "codwelt/sdk-simi",
+    "description": "Sdk del api de simi",
+    "authors": [
+        {
+            "name": "FuriosoJack",
+            "email": "iam@furiosojack.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codwelt\\SIMI\\SDK\\":  "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Codwelt\\SIMI\\SDK\\Tests\\": "tests/"
+        }
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    }
+}
