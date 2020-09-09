@@ -10,7 +10,7 @@ use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
  * @package Codwelt\SIMI\SDK\InfraStructure\Requests
  * @author Juan Diaz <iam@furiosojack.com>
  */
-abstract class HttpClient implements ClientHttpRepository
+abstract class HttpClient
 {
 
     /**
@@ -69,7 +69,7 @@ abstract class HttpClient implements ClientHttpRepository
      * @return ResponseRepository
      * @throws \Exception
      */
-    public function sendPost(string $url):ResponseRepository
+    protected function sendPost(string $url):ResponseRepository
     {
         if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
             throw new \Exception("Url Invalida");
@@ -85,7 +85,7 @@ abstract class HttpClient implements ClientHttpRepository
      * @return ResponseRepository
      * @throws \Exception
      */
-    public function sendGet(string $url):ResponseRepository
+    protected function sendGet(string $url):ResponseRepository
     {
         if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
             throw new \Exception("Url Invalida");
@@ -95,4 +95,11 @@ abstract class HttpClient implements ClientHttpRepository
         $resultRaw = $this->send($url);
         return new $this->responseClass($resultRaw);
     }
+
+    /**
+     * Es el metodo que se debe definir para escoger el metodo a usar
+     * @return ResponseRepository
+     */
+    public abstract function ejecutar(string $url):ResponseRepository;
+
 }

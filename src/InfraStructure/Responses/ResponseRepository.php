@@ -56,4 +56,13 @@ abstract class ResponseRepository
         return !isset($this->responseArray["status"]) || $this->responseArray["status"]  == 200;
     }
 
+    /**
+     * Devuelve el contenido del body
+     * @return array|null
+     */
+    public function getBody()
+    {
+        return $this->responseArray;
+    }
+
 }

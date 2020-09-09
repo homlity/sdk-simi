@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\Modelos;
+namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class CaracteristicaInterna
- * @package Codwelt\SIMI\SDK\Domain\Modelos
+ * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class CaracteristicaInterna

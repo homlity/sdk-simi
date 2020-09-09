@@ -11,6 +11,10 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
 class ResponseFiltroInmueble extends ResponseRepository
 {
 
+    /**
+     * Devuelve la lista de inmuebles
+     * @return array
+     */
     public function inmuebles()
     {
         if($this->isSuccess()){
@@ -19,6 +23,9 @@ class ResponseFiltroInmueble extends ResponseRepository
         return [];
     }
 
+    /**
+     * @return array|null
+     */
     public function paginacion()
     {
         if($this->isSuccess()){
