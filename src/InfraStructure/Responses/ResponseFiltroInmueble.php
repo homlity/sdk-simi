@@ -11,13 +11,17 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
 class ResponseFiltroInmueble extends ResponseRepository
 {
 
+
+
     /**
      * Devuelve la lista de inmuebles
      * @return array
      */
     public function inmuebles()
     {
+
         if($this->isSuccess()){
+
             return $this->responseArray["Inmuebles"];
         }
         return [];
@@ -32,5 +36,17 @@ class ResponseFiltroInmueble extends ResponseRepository
             return $this->responseArray["datosGrales"];
         }
         return null;
+    }
+
+    /**
+     * Devuelve la descripcion de la peticion
+     * @return string
+     */
+    public function descripcion()
+    {
+        if($this->isSuccess()){
+            return $this->responseArray["description"];
+        }
+        return "";
     }
 }

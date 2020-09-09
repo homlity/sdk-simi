@@ -15,7 +15,7 @@ abstract class ResponseRepository
      *
      * @var string|null
      */
-    private $responseRaw;
+    protected $responseRaw;
 
     /**
      * Es el contenido del body en forma de aray
@@ -23,13 +23,12 @@ abstract class ResponseRepository
      */
     protected $responseArray;
 
-    /**
-     * @param string $responderaw
-     */
-    public function __contruct(string $responderaw)
+
+    public function __construct(string $responderaw)
     {
+
         $this->responseRaw = $responderaw;
-        $this->responseArray = json_encode($this->responseRaw,true);
+        $this->responseArray = json_decode($this->responseRaw,true);
     }
 
     /**
@@ -38,7 +37,7 @@ abstract class ResponseRepository
      */
     public function isBodySuccess()
     {
-        if(empty($this->responseRaw) && is_array($this->responseArray)){
+        if(empty($this->responseRaw) || !is_array($this->responseArray)){
             return false;
         }
         return true;

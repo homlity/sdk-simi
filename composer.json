@@ -23,6 +23,7 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "phpunit/phpunit": "^9.3"
     }
 }

@@ -66,34 +66,33 @@ abstract class HttpClient
      * Envia la peticion recibe la url y devuelve una instancia
      * de un response repository
      * @param string $url
-     * @return ResponseRepository
+     * @return string
      * @throws \Exception
      */
-    protected function sendPost(string $url):ResponseRepository
+    protected function sendPost(string $url):string
     {
         if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
             throw new \Exception("Url Invalida");
         }
         $this->method = "POST";
-        return new $this->responseClass($this->send($url));
+        return $this->send($url);
     }
 
     /**
      * Hace una peticion get recibe una url y devuelve una instancia de un
      * objectio responseReposiitroy
      * @param string $url
-     * @return ResponseRepository
+     * @return string
      * @throws \Exception
      */
-    protected function sendGet(string $url):ResponseRepository
+    protected function sendGet(string $url):string
     {
         if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
             throw new \Exception("Url Invalida");
         }
         $this->method = "GET";
-
         $resultRaw = $this->send($url);
-        return new $this->responseClass($resultRaw);
+        return $resultRaw;
     }
 
     /**

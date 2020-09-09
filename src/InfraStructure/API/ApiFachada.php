@@ -3,7 +3,10 @@
 
 namespace Codwelt\SIMI\SDK\InfraStructure\API;
 
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorPreview;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
 
 /**
@@ -29,6 +32,14 @@ class ApiFachada
         $this->urlBase = "http://simi-api.com/ApiSimiweb/response/";
     }
 
+    /**
+     * Devuelve el token del api
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 
     /**
      * Devuelve un array de inmueble Preview
@@ -86,14 +97,41 @@ class ApiFachada
         $request = new RequestFiltroInmuebles($this->token);
         $response = $request->ejecutar($url);
         $inmuebles = array();
+        $paginador = null;
 
         if($response->isSuccess()) {
-            $inmueblesRaw = $response->inmueble();
+            $inmueblesRaw = $response->inmuebles();
             foreach ($inmueblesRaw as $inmueble){
                 $inmuebles[] = new InmueblePreview($inmueble);
             }
+            $paginador = new PaginadorPreview($response->paginacion());
         }
-        return $inmuebles;
+        return [
+            "inmuebles" =>$inmuebles,
+            "paginador" => $paginador
+        ];
+    }
+
+
+    /**
+     * Devuelve una instancia del objeto de detalle inmueble
+     * o null si no existe
+     * @param $codigoInmueble
+     * @return InmuebleDetail | null
+     * @throws \Exception
+     */
+    public function getDetalleInmueble($codigoInmueble)
+    {
+        $url = $this->urlBase . "v2/inmueble/codInmueble/".$codigoInmueble;
+
+        $request = new RequestDetalleInmueble($this->token);
+        $response = $request->ejecutar($url);
+
+        if($response->isSuccess()){
+            return new InmuebleDetail($response->getBody());
+        }
+        return null;
+
     }
 
 
