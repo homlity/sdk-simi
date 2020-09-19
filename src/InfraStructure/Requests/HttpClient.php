@@ -13,6 +13,9 @@ use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
 abstract class HttpClient
 {
 
+    protected static $METHOD_METHOD_GET = "GET";
+    protected static $REQUEST_METHOD_POST = "POST";
+
     /**
      * Es el valor del token a usar
      * @var string
@@ -22,13 +25,18 @@ abstract class HttpClient
     /**
      * @var
      */
-    protected $method;
+    protected $urlBase;
 
     /**
-     * Es la clase usara para devolver el response
-     * @var ResponseRepository
+     * @var
      */
-    protected $responseClass;
+    protected $method;
+
+
+    /**
+     * @var
+     */
+    protected $endPoint;
 
 
     /**
@@ -38,6 +46,7 @@ abstract class HttpClient
     public function __construct($token)
     {
         $this->token = $token;
+        $this->urlBase  = "http://simi-api.com/ApiSimiweb/response/";
     }
 
 
@@ -47,8 +56,13 @@ abstract class HttpClient
      * @param $url
      * @return bool|string
      */
-    protected function send($url)
+    protected function send()
     {
+
+        $url = $this->urlBase.$this->endPoint;
+        if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
+            throw new \Exception("Url Invalida");
+        }
         $ch = curl_init();
         $auth ='Authorization:'.$this->token;
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -63,42 +77,12 @@ abstract class HttpClient
     }
 
     /**
-     * Envia la peticion recibe la url y devuelve una instancia
-     * de un response repository
-     * @param string $url
-     * @return string
-     * @throws \Exception
-     */
-    protected function sendPost(string $url):string
-    {
-        if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
-            throw new \Exception("Url Invalida");
-        }
-        $this->method = "POST";
-        return $this->send($url);
-    }
-
-    /**
-     * Hace una peticion get recibe una url y devuelve una instancia de un
-     * objectio responseReposiitroy
-     * @param string $url
-     * @return string
-     * @throws \Exception
-     */
-    protected function sendGet(string $url):string
-    {
-        if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
-            throw new \Exception("Url Invalida");
-        }
-        $this->method = "GET";
-        $resultRaw = $this->send($url);
-        return $resultRaw;
-    }
-
-    /**
      * Es el metodo que se debe definir para escoger el metodo a usar
      * @return ResponseRepository
      */
-    public abstract function ejecutar(string $url):ResponseRepository;
+    public abstract function ejecutar(array $parameters):ResponseRepository;
+
+
+
 
 }

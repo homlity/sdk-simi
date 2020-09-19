@@ -14,10 +14,6 @@ use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
  */
 class ApiFachada
 {
-    /**
-     * @var
-     */
-    private $urlBase;
 
     /**
      * @var
@@ -27,7 +23,6 @@ class ApiFachada
     public function __construct(string $token)
     {
         $this->token = $token;
-        $this->urlBase = "http://simi-api.com/ApiSimiweb/response/";
     }
 
     /**
@@ -90,7 +85,7 @@ class ApiFachada
             $valores =  $valores. "/".$filtroK . "/" .$value;
         }
 
-        $url = $this->urlBase."v2.1.1/filtroInmueble".$valores;
+        $url = "v2.1.1/filtroInmueble".$valores;
 
         $request = new RequestFiltroInmuebles($this->token);
         $response = $request->ejecutar($url);
@@ -120,7 +115,7 @@ class ApiFachada
      */
     public function getDetalleInmueble($codigoInmueble)
     {
-        $url = $this->urlBase . "v2/inmueble/codInmueble/".$codigoInmueble;
+        $url = "v2/inmueble/codInmueble/".$codigoInmueble;
 
         $request = new RequestDetalleInmueble($this->token);
         $response = $request->ejecutar($url);
