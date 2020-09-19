@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\Modelos;
+namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class Barrio
@@ -10,5 +10,23 @@ namespace Codwelt\SIMI\SDK\Domain\Modelos;
  */
 class Barrio
 {
+
+
+    private $barrioRaw;
+
+    public function __construct($barrioRaw)
+    {
+        $this->barrioRaw = $barrioRaw;
+    }
+
+    public function id()
+    {
+        return $this->barrioRaw["id"];
+    }
+
+    public function nombre()
+    {
+        return $this->barrioRaw["nombre"];
+    }
 
 }

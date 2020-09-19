@@ -10,5 +10,16 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  */
 class CaracteristicaInterna
 {
+    public $caracteristicaRaw;
+
+    public function __construct(array $caracteristicaRaw)
+    {
+        $this->caracteristicaRaw = $caracteristicaRaw;
+    }
+
+    public function descripcion()
+    {
+        return $this->caracteristicaRaw["descripcion"];
+    }
 
 }

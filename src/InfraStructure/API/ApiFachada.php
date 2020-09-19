@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Codwelt\SIMI\SDK\InfraStructure\API;
-
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorPreview;
@@ -10,6 +7,7 @@ use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
 
 /**
+ * Clase encargada de servir como intermediario entre la logica de negocio y los inmuebles
  * Class ApiV1
  * @package Codwelt\SIMI\SDK\InfraStructure\API
  * @author Juan Diaz <iam@furiosojack.com>

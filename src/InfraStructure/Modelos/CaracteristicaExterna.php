@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\Modelos;
+namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class CaracteristicaExterna
@@ -11,4 +11,20 @@ namespace Codwelt\SIMI\SDK\Domain\Modelos;
 class CaracteristicaExterna
 {
 
+    private $carecteristicaRaw;
+
+    public function __construct(array $carecteristicaRaw)
+    {
+        $this->carecteristicaRaw = $carecteristicaRaw;
+    }
+
+    public function descripcion()
+    {
+        return $this->carecteristicaRaw["Descripcion"];
+    }
+
+    public function valor()
+    {
+        return $this->carecteristicaRaw["cantidad"];
+    }
 }

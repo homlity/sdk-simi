@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\Modelos;
+namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class Ciudad
@@ -10,5 +10,20 @@ namespace Codwelt\SIMI\SDK\Domain\Modelos;
  */
 class Ciudad
 {
+    private $dataRaw;
 
+    public function __construct(array $data)
+    {
+        $this->dataRaw = $data;
+    }
+
+    public function nombre()
+    {
+        return $this->dataRaw["nombre"];
+    }
+
+    public function id()
+    {
+        return $this->dataRaw["id"];
+    }
 }

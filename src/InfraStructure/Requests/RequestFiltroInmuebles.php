@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
-
 use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseFiltroInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;

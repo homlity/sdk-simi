@@ -1,12 +1,14 @@
 <?php
+
+
 namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
 /**
- * Class Departamento
- * @package Codwelt\SIMI\SDK\Domain\Modelos
+ * Class ASesor
+ * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class Departamento
+class Asesor
 {
     private $departamentoRaw;
 
@@ -24,5 +26,4 @@ class Departamento
     {
         return $this->departamentoRaw["id"];
     }
-
 }

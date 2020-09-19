@@ -120,7 +120,7 @@ class InmuebleDetail extends InmueblePreview
             $this->caracteristicasInternas = array();
 
             foreach ($this->jsonRAW["caracteristicasInternas"] as $caracteristicasExterna){
-                $this->caracteristicasInternas[] = new CaracteristicaInternaSimi($caracteristicasExterna["Descripcion"]);
+                $this->caracteristicasInternas[] = new CaracteristicaInterna($caracteristicasExterna);
             }
 
         }
