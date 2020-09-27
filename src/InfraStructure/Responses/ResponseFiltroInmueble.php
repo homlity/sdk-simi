@@ -15,16 +15,14 @@ class ResponseFiltroInmueble extends ResponseRepository
 
     /**
      * Devuelve la lista de inmuebles
-     * @return array
+     * @return array|null
      */
     public function inmuebles()
     {
-
         if($this->isSuccess()){
 
             return $this->responseArray["Inmuebles"];
         }
-        return [];
     }
 
     /**
@@ -35,7 +33,6 @@ class ResponseFiltroInmueble extends ResponseRepository
         if($this->isSuccess()){
             return $this->responseArray["datosGrales"];
         }
-        return null;
     }
 
     /**

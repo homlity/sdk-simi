@@ -1,8 +1,5 @@
 <?php
-
-
 namespace Codwelt\SIMI\SDK\Tests\InsfraStructure;
-
 use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
 use Codwelt\SIMI\SDK\Tests\TestCase;
 
@@ -42,6 +39,21 @@ class RequestHTTPTest extends TestCase
         $api = new ApiFachada(getenv("token-simi"));
         $barrios = $api->getBarrios("25960");
         $this->assertIsArray($barrios);
+    }
+
+    public function test_inmueblesDestacados()
+    {
+        $api = new ApiFachada(getenv("token-simi"));
+        $barrios = $api->getInmueblesDestacados();
+
+        $this->assertIsArray($barrios);
+    }
+
+    public function test_asesores()
+    {
+        $api = new ApiFachada(getenv("token-simi"));
+        $asesores = $api->getAsesores();
+        $this->assertIsArray($asesores["asesores"]);
     }
 
 }

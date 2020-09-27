@@ -6,7 +6,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class PaginadorPreview
+class PaginadorInmueblePreview
 {
     private $paginacionArray;
 

@@ -23,7 +23,7 @@ class RequestDetalleInmueble extends HttpClient
     public function ejecutar(array $parameters): ResponseRepository
     {
         if(empty($parameters["codigo"])){
-            throw new \Exception("El codigo del inmueble es requerido para obtener el detalle");
+            throw new \Exception("El codigo del inmueble es requerido para obtener el detalle del inmueble");
         }
 
         $this->endPoint = "v2/inmueble/codInmueble/".$parameters["codigo"];

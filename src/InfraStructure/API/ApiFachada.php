@@ -1,16 +1,21 @@
 <?php
 namespace Codwelt\SIMI\SDK\InfraStructure\API;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\AsesorDetalleInmueble;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\AsesorUsuario;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Barrio;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Ciudad;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Departamento;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorPreview;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorAsesores;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorInmueblePreview;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestAsesores;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetBarrios;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetCiudades;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetDepartamentos;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetInmueblesDestacados;
 
 /**
  * Clase encargada de servir como intermediario entre la logica de negocio y los inmuebles
@@ -58,7 +63,7 @@ class ApiFachada
             foreach ($inmueblesRaw as $inmueble){
                 $inmuebles[] = new InmueblePreview($inmueble);
             }
-            $paginador = new PaginadorPreview($response->paginacion());
+            $paginador = new PaginadorInmueblePreview($response->paginacion());
         }
         return [
             "inmuebles" =>$inmuebles,
@@ -107,6 +112,11 @@ class ApiFachada
         return $deparmentos;
     }
 
+    /**
+     * @param $idDepartamento
+     * @return array
+     * @throws \Exception
+     */
     public function getCiudades($idDepartamento)
     {
         $request = new RequestGetCiudades($this->token);
@@ -125,6 +135,11 @@ class ApiFachada
         return $ciudades;
     }
 
+    /**
+     * @param $idCiudad
+     * @return array
+     * @throws \Exception
+     */
     public function getBarrios($idCiudad)
     {
         $request = new RequestGetBarrios($this->token);
@@ -144,9 +159,52 @@ class ApiFachada
     }
 
 
+    /**
+     * Devuelve le listado de inmuebles detacados
+     * @param array $filtros
+     * @return array
+     * @throws \Exception
+     */
+    public function getInmueblesDestacados(array $filtros = [])
+    {
+        $request = new RequestGetInmueblesDestacados($this->token);
+        $response = $request->ejecutar($filtros);
+
+        $inmuebles = [];
+        $paginador = null;
+        if($response->isSuccess()){
+            foreach ($response->inmuebles() as $inmueble){
+                $inmuebles[] = new InmueblePreview($inmueble);
+            }
+            $paginador = new PaginadorInmueblePreview($response->paginacion());
+        }
+
+        return array(
+            "inmuebles" => $inmuebles,
+            "paginador" => $paginador
+        );
+    }
 
 
+    public function getAsesores(array $filtros = [])
+    {
+        $request = new RequestAsesores($this->token);
+        $response = $request->ejecutar($filtros);
 
+        $asesores = [];
+        $paginador = null;
+        if($response->isSuccess()){
+            foreach ($response->asesores() as $asesor){
+                $asesores[] = new AsesorUsuario($asesor);
+            }
+            $paginador = new PaginadorAsesores($response->paginacion());
+        }
+
+        return [
+            "asesores" => $asesores,
+            "paginador" => $paginador
+        ];
+    }
 
 
 }

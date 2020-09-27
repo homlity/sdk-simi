@@ -11,6 +11,9 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
 class ResponseGetDepartamentos extends ResponseRepository
 {
 
+    /**
+     * @return array|null
+     */
     public function departamentos()
     {
 

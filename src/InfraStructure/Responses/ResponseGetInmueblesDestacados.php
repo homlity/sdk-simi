@@ -16,27 +16,34 @@ class ResponseGetInmueblesDestacados extends ResponseRepository
     public function __construct(string $responderaw)
     {
         parent::__construct($responderaw);
-        $this->paginacionRaw = $this->responseArray["infoAdd"];
-        $response = $this->responseArray;
-        unset($response["infoAdd"]);
-        $this->inmueblesRAW = $response;
+        if($this->isSuccess()){
+            $this->paginacionRaw = $this->responseArray["infoAdd"];
+            $response = $this->responseArray;
+            unset($response["infoAdd"]);
+            $this->inmueblesRAW = $response;
+        }
     }
 
     /**
      * Devuelve el array de inmuebles destacados
-     * @return array
+     * @return array|null
      */
     public function inmuebles()
     {
-        return $this->inmueblesRAW;
+        if($this->isSuccess()){
+            return $this->inmueblesRAW;
+        }
+
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function paginacion()
     {
-        return $this->paginacionRaw;
+        if($this->isSuccess()){
+            return $this->paginacionRaw;
+        }
     }
 
 }

@@ -29,8 +29,10 @@ class ResponseDetalleInmueble extends ResponseRepository
      */
     public function inmueble()
     {
-        $response = $this->responseArray;
-        return $response["infoAdd"];
+        if($this->isSuccess()){
+            $response = $this->responseArray;
+            return $response["infoAdd"];
+        }
     }
 
 
