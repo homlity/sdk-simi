@@ -11,4 +11,14 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
 class ResponseGetCiudades extends ResponseRepository
 {
 
+    /**
+     * @return array|null
+     */
+    public function ciudades()
+    {
+        if($this->isSuccess()){
+            return $this->responseArray;
+        }
+    }
+
 }

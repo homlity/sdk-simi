@@ -1,10 +1,16 @@
 <?php
 namespace Codwelt\SIMI\SDK\InfraStructure\API;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\Barrio;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\Ciudad;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\Departamento;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorPreview;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetBarrios;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetCiudades;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetDepartamentos;
 
 /**
  * Clase encargada de servir como intermediario entre la logica de negocio y los inmuebles
@@ -42,53 +48,8 @@ class ApiFachada
      */
     public function getInmuebles(array $filters = array())
     {
-        $permitidos = array(
-            "departamento",
-            "ciudad",
-            "zona",
-            "barrio",
-            "tipoInm",
-            "tipOper",
-            "areamin",
-            "areamax",
-            "valmin",
-            "valmax",
-            "banios",
-            "garajes",
-            "alcobas",
-            //ordenar
-            "order",
-            "campo",
-            //limites
-            "limite",
-            "cantidad"
-        );
-
-        foreach ($filters as $filter => $value){
-
-            if(!in_array($filter,$permitidos)){
-                throw new \Exception("Filtro ($filter) no esta permitido en APISIMI");
-            }
-        }
-
-        $default = [
-            "cantidad" => 30,
-            "limite" => 1
-        ];
-
-        $filtros = array_merge($default,$filters);
-
-
-        $valores = "";
-
-        foreach ($filtros as $filtroK => $value){
-            $valores =  $valores. "/".$filtroK . "/" .$value;
-        }
-
-        $url = "v2.1.1/filtroInmueble".$valores;
-
         $request = new RequestFiltroInmuebles($this->token);
-        $response = $request->ejecutar($url);
+        $response = $request->ejecutar($filters);
         $inmuebles = array();
         $paginador = null;
 
@@ -115,17 +76,74 @@ class ApiFachada
      */
     public function getDetalleInmueble($codigoInmueble)
     {
-        $url = "v2/inmueble/codInmueble/".$codigoInmueble;
-
         $request = new RequestDetalleInmueble($this->token);
-        $response = $request->ejecutar($url);
-
+        $response = $request->ejecutar([
+            "codigo" => $codigoInmueble
+        ]);
         if($response->isSuccess()){
             return new InmuebleDetail($response->getBody());
         }
         return null;
 
     }
+
+    /**
+     * Devuelve todos los departamentos de la inmobiliaria
+     * un array de objetos Departamento
+     * @return array
+     * @throws \Exception
+     */
+    public function getDepartamentos()
+    {
+        $request = new RequestGetDepartamentos($this->token);
+        $response = $request->ejecutar([]);
+
+        $deparmentosArray = $response->departamentos();
+
+        $deparmentos = [];
+        foreach ($deparmentosArray as $departamento){
+            $deparmentos[] = new Departamento($departamento);
+        }
+        return $deparmentos;
+    }
+
+    public function getCiudades($idDepartamento)
+    {
+        $request = new RequestGetCiudades($this->token);
+        $response = $request->ejecutar([
+            "idDepartamento" => $idDepartamento
+        ]);
+
+        $ciudadesArray = $response->ciudades();
+
+        $ciudades = array();
+
+        foreach ($ciudadesArray as $ciudad){
+            $ciudades[] = new Ciudad($ciudad);
+        }
+
+        return $ciudades;
+    }
+
+    public function getBarrios($idCiudad)
+    {
+        $request = new RequestGetBarrios($this->token);
+        $response = $request->ejecutar([
+            "idCiudad" => $idCiudad
+        ]);
+
+        $barriosArray = $response->barrios();
+
+        $barrios = array();
+
+        foreach ($barriosArray as $barrio){
+            $barrios[] = new Barrio($barrio);
+        }
+
+        return $barrios;
+    }
+
+
 
 
 

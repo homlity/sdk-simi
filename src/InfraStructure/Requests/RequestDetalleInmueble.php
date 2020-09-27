@@ -13,15 +13,20 @@ use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
  */
 class RequestDetalleInmueble extends HttpClient
 {
-    protected $responseClass = ResponseDetalleInmueble::class;
+
 
     /**
      * @param string $url
-     * @return ResponseRepository
+     * @return ResponseDetalleInmueble
      * @throws \Exception
      */
-    public function ejecutar(string $url): ResponseRepository
+    public function ejecutar(array $parameters): ResponseRepository
     {
-        parent::sendGet($url);
+        if(empty($parameters["codigo"])){
+            throw new \Exception("El codigo del inmueble es requerido para obtener el detalle");
+        }
+
+        $this->endPoint = "v2/inmueble/codInmueble/".$parameters["codigo"];
+        return new ResponseDetalleInmueble($this->send());
     }
 }

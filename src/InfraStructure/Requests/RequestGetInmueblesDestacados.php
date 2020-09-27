@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
 
 /**

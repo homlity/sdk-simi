@@ -19,8 +19,29 @@ class RequestHTTPTest extends TestCase
 
         $api = new ApiFachada(getenv("token-simi"));
         $inmuebles = $api->getInmuebles();
-        var_dump($inmuebles);
+        $this->assertIsArray($inmuebles);
+    }
 
+    public function test_getDepartamentos()
+    {
+        $api = new ApiFachada(getenv("token-simi"));
+        $departamentos = $api->getDepartamentos();
+
+        $this->assertIsArray($departamentos);
+    }
+
+    public function test_getCiudades()
+    {
+        $api = new ApiFachada(getenv("token-simi"));
+        $ciudades = $api->getCiudades("11012");
+        $this->assertIsArray($ciudades);
+    }
+
+    public function test_getBarrios()
+    {
+        $api = new ApiFachada(getenv("token-simi"));
+        $barrios = $api->getBarrios("25960");
+        $this->assertIsArray($barrios);
     }
 
 }

@@ -10,5 +10,11 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
  */
 class ResponseGetBarrios extends ResponseRepository
 {
+    public function barrios()
+    {
+        if($this->isSuccess()){
+            return $this->responseArray;
+        }
+    }
 
 }

@@ -15,12 +15,13 @@ class RequestGetDepartamentos extends HttpClient
 {
 
     /**
-     * @param string $endPoint
+     * @param array $parameters
      * @return ResponseGetDepartamentos
      * @throws \Exception
      */
-    public function ejecutar(string $endPoint): ResponseRepository
+    public function ejecutar(array $parameters): ResponseRepository
     {
-        return new ResponseGetDepartamentos($this->sendGet($endPoint));
+        $this->endPoint = "v2/departamento";
+        return new ResponseGetDepartamentos($this->send());
     }
 }

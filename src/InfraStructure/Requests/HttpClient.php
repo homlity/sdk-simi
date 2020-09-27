@@ -47,6 +47,7 @@ abstract class HttpClient
     {
         $this->token = $token;
         $this->urlBase  = "http://simi-api.com/ApiSimiweb/response/";
+        $this->method = self::$METHOD_METHOD_GET;
     }
 
 
