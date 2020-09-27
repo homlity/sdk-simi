@@ -1,5 +1,7 @@
 <?php
 namespace Codwelt\SIMI\SDK\InfraStructure\API;
+
+use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\AsesorDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\AsesorUsuario;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Barrio;
@@ -27,7 +29,7 @@ use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestTipoInmueble;
  * @package Codwelt\SIMI\SDK\InfraStructure\API
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class ApiFachada
+class ApiFachada extends ApiFachadaRepository
 {
 
     /**
