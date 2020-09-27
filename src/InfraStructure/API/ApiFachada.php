@@ -5,17 +5,21 @@ use Codwelt\SIMI\SDK\InfraStructure\Modelos\AsesorUsuario;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Barrio;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Ciudad;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\Departamento;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\GestionInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorAsesores;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorInmueblePreview;
+use Codwelt\SIMI\SDK\InfraStructure\Modelos\TipoInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestAsesores;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetBarrios;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetCiudades;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetDepartamentos;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetGestionInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetInmueblesDestacados;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestTipoInmueble;
 
 /**
  * Clase encargada de servir como intermediario entre la logica de negocio y los inmuebles
@@ -204,6 +208,36 @@ class ApiFachada
             "asesores" => $asesores,
             "paginador" => $paginador
         ];
+    }
+
+    public function getTiposInmueble()
+    {
+        $request = new RequestTipoInmueble($this->token);
+        $response = $request->ejecutar([]);
+
+
+        $tipos = [];
+        if($response->isSuccess()){
+            foreach ($response->tiposInmueble() as $tipo){
+                $tipos[] = new TipoInmueble($tipo);
+            }
+        }
+
+        return $tipos;
+    }
+
+    public function getGestionesInmueble()
+    {
+        $request = new RequestGetGestionInmueble($this->token);
+        $response = $request->ejecutar([]);
+
+        $gestions  = [];
+        if($response->isSuccess()){
+            foreach ($response->gestiones() as $gestion){
+                $gestions[] = new GestionInmueble($gestion);
+            }
+        }
+        return $gestions;
     }
 
 

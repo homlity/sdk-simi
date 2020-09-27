@@ -19,7 +19,7 @@ class RequestGetCiudades extends HttpClient
      * @return ResponseGetCiudades
      * @throws \Exception
      */
-    public function ejecutar(array $parameters): ResponseRepository
+    public function ejecutar(array $parameters = []): ResponseRepository
     {
         if(empty($parameters["idDepartamento"])){
             throw new \Exception("El id del departemento es necesario para obtener las ciudades");

@@ -17,7 +17,7 @@ class RequestGetInmueblesDestacados extends HttpClient
      * @return ResponseGetInmueblesDestacados
      * @throws \Exception
      */
-    public function ejecutar(array $parameters): ResponseRepository
+    public function ejecutar(array $parameters = []): ResponseRepository
     {
         $permitidos = array(
             //limites

@@ -21,7 +21,7 @@ class RequestGetBarrios extends HttpClient
      * @return ResponseGetBarrios
      * @throws \Exception
      */
-    public function ejecutar(array $parameters): ResponseRepository
+    public function ejecutar(array $parameters = []): ResponseRepository
     {
         if(empty($parameters["idCiudad"])){
             throw new \Exception("El id de la ciudad es necesaria para obtener los barrios");

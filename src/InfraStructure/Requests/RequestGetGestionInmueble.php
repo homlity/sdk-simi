@@ -3,25 +3,25 @@
 
 namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
 
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseGetDepartamentos;
+use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseGetGestionInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
 
 /**
- * Class RequestGetDepartamentos
+ * Class RequestGetGestionInmueble
  * @package Codwelt\SIMI\SDK\InfraStructure\Requests
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class RequestGetDepartamentos extends HttpClient
+class RequestGetGestionInmueble extends HttpClient
 {
 
     /**
      * @param array $parameters
-     * @return ResponseGetDepartamentos
+     * @return ResponseGetGestionInmueble
      * @throws \Exception
      */
     public function ejecutar(array $parameters = []): ResponseRepository
     {
-        $this->endPoint = "v2/departamento";
-        return new ResponseGetDepartamentos($this->send());
+        $this->endPoint = "gestion";
+        return new ResponseGetGestionInmueble($this->send());
     }
 }

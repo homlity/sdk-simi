@@ -14,7 +14,7 @@ class RequestFiltroInmuebles extends HttpClient
 {
 
 
-    public function ejecutar(array $parameters): ResponseRepository
+    public function ejecutar(array $parameters = []): ResponseRepository
     {
         $permitidos = array(
             "departamento",

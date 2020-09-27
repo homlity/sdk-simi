@@ -81,7 +81,7 @@ abstract class HttpClient
      * Es el metodo que se debe definir para escoger el metodo a usar
      * @return ResponseRepository
      */
-    public abstract function ejecutar(array $parameters):ResponseRepository;
+    public abstract function ejecutar(array $parameters = []):ResponseRepository;
 
 
 
