@@ -4,7 +4,7 @@ namespace Codwelt\SIMI\SDK\Domain\Providers;
 use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
 use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
 
-use Codwelt\SIMI\SDK\InfraStructure\Providers\Repository\TokenServiceProviderRespository;
+
 
 /**
  * Class ApiServiceProvider

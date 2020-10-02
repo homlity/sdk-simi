@@ -46,7 +46,7 @@ class ObtenedorInmueblesSimilaresService
     }
 
     /**
-     * @param $codigoInmueble
+     * @param string $codigoInmueble
      * @return array
      * @throws \Exception
      */

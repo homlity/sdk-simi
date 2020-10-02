@@ -1,7 +1,5 @@
 <?php
-
-
-namespace Codwelt\SIMI\SDK\InfraStructure\Providers\Repository;
+namespace Codwelt\SIMI\SDK\Domain\Providers;
 
 /**
  * Class ApiServiceProviderRespository
