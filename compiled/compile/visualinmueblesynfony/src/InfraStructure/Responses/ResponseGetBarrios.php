@@ -1,0 +1,2 @@
+<?php
+ namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseGetBarrios extends ResponseRepository { public function barrios() { goto jje37; jje37: if (!$this->isSuccess()) { goto aA1jm; } goto arbSa; zJWRY: aA1jm: goto NLqy1; arbSa: return $this->responseArray; goto zJWRY; NLqy1: } }

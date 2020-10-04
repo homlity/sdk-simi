@@ -1,0 +1,2 @@
+<?php
+ namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseTipoInmueble extends ResponseRepository { public function tiposInmueble() { goto K5cf4; K5cf4: if (!$this->isSuccess()) { goto NF_Fe; } goto lSSO9; lSSO9: return $this->responseArray; goto cwdqv; cwdqv: NF_Fe: goto qeuLD; qeuLD: } }

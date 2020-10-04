@@ -1,0 +1,2 @@
+<?php
+ namespace Codwelt\SIMI\SDK\InfraStructure\Requests; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseGetGestionInmueble; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository; class RequestGetGestionInmueble extends HttpClient { public function ejecutar(array $parameters = []) : ResponseRepository { $this->endPoint = "\147\145\x73\x74\151\157\156"; return new ResponseGetGestionInmueble($this->send()); } }

@@ -1,0 +1,2 @@
+<?php
+ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos\Repository; abstract class AsesorRepository { protected $asesorRaw; public function __construct(array $asesorRaw) { $this->asesorRaw = $asesorRaw; } public abstract function nombre(); public abstract function celular(); public abstract function foto(); public abstract function email(); }

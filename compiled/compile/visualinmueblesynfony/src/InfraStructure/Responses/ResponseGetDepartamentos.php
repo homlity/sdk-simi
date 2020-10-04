@@ -1,0 +1,2 @@
+<?php
+ namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseGetDepartamentos extends ResponseRepository { public function departamentos() { goto LyU6_; N7XM6: Uev0r: goto AmqsW; ZtDNW: return $this->responseArray; goto N7XM6; LyU6_: if (!$this->isSuccess()) { goto Uev0r; } goto ZtDNW; AmqsW: } }
