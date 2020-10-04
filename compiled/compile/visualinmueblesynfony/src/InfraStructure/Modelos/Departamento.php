@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class Departamento { private $departamentoRaw; public function __construct(array $departamentoRaw) { $this->departamentoRaw = $departamentoRaw; } public function nombre() { return $this->departamentoRaw["\156\157\x6d\142\162\x65"]; } public function id() { return $this->departamentoRaw["\151\144"]; } }

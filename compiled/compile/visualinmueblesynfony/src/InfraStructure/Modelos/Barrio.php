@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class Barrio { private $barrioRaw; public function __construct($barrioRaw) { $this->barrioRaw = $barrioRaw; } public function id() { return $this->barrioRaw["\151\x64"]; } public function nombre() { return $this->barrioRaw["\156\x6f\155\x62\162\145"]; } }

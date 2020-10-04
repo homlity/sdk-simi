@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class GestionInmueble { protected $gestionRaw; public function __construct(array $gestionRaw) { $this->gestionRaw = $gestionRaw; } public function id() { return $this->gestionRaw["\x69\x64\107\145\163\164\x69\x6f\156"]; } public function nombre() { return $this->gestionRaw["\x4e\157\x6d\x62\x72\x65"]; } }

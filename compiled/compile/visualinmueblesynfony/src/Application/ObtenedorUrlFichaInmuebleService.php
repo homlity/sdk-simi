@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\Application; use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview; class ObtenedorUrlFichaInmuebleService { public function getUrl(InmueblePreview $inmueblePreview) { return "\150\164\x74\x70\x73\72\x2f\x2f\163\x69\155\x69\143\162\155\x2e\141\160\x70\57\155\143\157\155\x65\162\x63\151\141\x6c\x77\145\142\x2f\146\151\143\x68\x61\163\137\x74\145\x63\156\151\x63\141\x73\57\x66\151\143\150\x61\164\145\143\x33\56\x70\150\160\77\162\145\147\75" . $inmueblePreview->identificacion(); } }

@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Requests; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseTipoInmueble; class RequestTipoInmueble extends HttpClient { public function ejecutar(array $parameters = []) : ResponseRepository { $this->endPoint = "\166\62\57\x74\151\160\x6f\111\x6e\x6d\165\x65\x62\154\x65\163\x2f\165\x6e\151\x71\165\x65\57\61"; return new ResponseTipoInmueble($this->send()); } }

@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class Ciudad { private $dataRaw; public function __construct(array $data) { $this->dataRaw = $data; } public function nombre() { return $this->dataRaw["\x6e\157\155\x62\x72\x65"]; } public function id() { return $this->dataRaw["\151\x64"]; } }

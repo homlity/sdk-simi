@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseGetGestionInmueble extends ResponseRepository { public function gestiones() { goto GHhqn; habeQ: EUgTL: goto er_iy; wikAi: return $this->responseArray; goto habeQ; GHhqn: if (!$this->isSuccess()) { goto EUgTL; } goto wikAi; er_iy: } }

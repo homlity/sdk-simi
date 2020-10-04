@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; use Codwelt\SIMI\SDK\InfraStructure\Modelos\Repository\AsesorRepository; class AsesorUsuario extends AsesorRepository { public function nombre() { return $this->asesorRaw["\156\157\155\x62\162\145\x55\x73\145\x72"]; } public function celular() { return $this->asesorRaw["\x63\x65\154\165\154\x61\x72\x55\x73\x65\x72"]; } public function foto() { return $this->asesorRaw["\146\x6f\164\x6f\x55\163\x65\x72"]; } public function email() { return $this->asesorRaw["\143\157\162\x72\x65\157\x55\163\x65\x72"]; } }

@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseGetCiudades extends ResponseRepository { public function ciudades() { goto oJ3DN; oJ3DN: if (!$this->isSuccess()) { goto SWXyp; } goto k6NAe; VUJzA: SWXyp: goto PBDAg; k6NAe: return $this->responseArray; goto VUJzA; PBDAg: } }

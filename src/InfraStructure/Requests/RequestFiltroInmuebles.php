@@ -39,7 +39,6 @@ class RequestFiltroInmuebles extends HttpClient
         );
 
         foreach ($parameters as $filter => $value){
-
             if(!in_array($filter,$permitidos)){
                 throw new \Exception("Filtro ($filter) no esta permitido en APISIMI");
             }
@@ -50,7 +49,11 @@ class RequestFiltroInmuebles extends HttpClient
             "limite" => 1
         ];
 
-        $filtros = array_merge($default,$parameters);
+        //Solo se dejan los filtro que tengan un valor valido
+        $filtros = array_filter($parameters,function($value,$key){
+            return !empty($value);
+        },ARRAY_FILTER_USE_BOTH);
+        $filtros = array_merge($default,$filtros);
         $valores = "";
 
         foreach ($filtros as $filtroK => $value){

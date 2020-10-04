@@ -24,6 +24,6 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "phpunit/phpunit": "^9.3"
+        "pmaslak/php-obfuscator": "^1.1"
     }
 }

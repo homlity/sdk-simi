@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Requests; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseGetDepartamentos; use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository; class RequestGetDepartamentos extends HttpClient { public function ejecutar(array $parameters = []) : ResponseRepository { $this->endPoint = "\166\x32\x2f\144\145\160\x61\162\164\141\x6d\145\x6e\164\157"; return new ResponseGetDepartamentos($this->send()); } }

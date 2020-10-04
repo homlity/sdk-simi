@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Responses; class ResponseAsesores extends ResponseRepository { public function asesores() { goto yol1n; FRP5f: return $this->responseArray["\x6c\x69\x73\x74\x41\x73\145\163\157\162"]; goto sMl5u; yol1n: if (!$this->isSuccess()) { goto iJIAa; } goto FRP5f; sMl5u: iJIAa: goto PTVTy; PTVTy: } public function paginacion() { goto opDpD; opDpD: if (!$this->isSuccess()) { goto Xri7d; } goto MtcIr; MtcIr: return $this->responseArray["\144\141\x74\x6f\x73\x47\162\x61\154\145\163"]; goto LxmEO; LxmEO: Xri7d: goto fG5tw; fG5tw: } }

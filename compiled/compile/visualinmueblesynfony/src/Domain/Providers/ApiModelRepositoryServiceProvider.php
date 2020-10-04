@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\Domain\Providers; use Codwelt\SIMI\SDK\Domain\API\ApiModelRepositoryFachada; class ApiModelRepositoryServiceProvider extends ApiServiceProviderRepository { public function establerApi() { return $this->api = new ApiModelRepositoryFachada($this->tokenProvider->getToken()); } }

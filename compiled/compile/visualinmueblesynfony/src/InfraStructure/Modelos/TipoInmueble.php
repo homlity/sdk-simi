@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class TipoInmueble { protected $tipoRaw; public function __construct(array $tipoRaw) { $this->tipoRaw = $tipoRaw; } public function id() { return $this->tipoRaw["\x69\x64\124\151\160\x6f\x49\x6e\x6d"]; } public function Nombre() { return $this->tipoRaw["\116\x6f\x6d\142\x72\x65"]; } public function totalInmuebles() { return $this->tipoRaw["\164\157\x74\141\154\x49\x6e\155\x75\145\142\154\145\163"]; } }

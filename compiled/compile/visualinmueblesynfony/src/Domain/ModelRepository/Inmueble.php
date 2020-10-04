@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\Domain\ModelRepository; use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail; use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview; class Inmueble { private $inmueble; public function __construct($inmueble) { $this->inmueble = $inmueble; } public function nombre() { return ucfirst(strtolower($this->inmueble->tipoInmueble() . "\40\55\x20" . $this->inmueble->barrio() . $this->inmueble->ciudad())); } }

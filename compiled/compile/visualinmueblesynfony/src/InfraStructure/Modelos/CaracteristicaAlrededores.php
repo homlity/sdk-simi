@@ -1,2 +1,0 @@
-<?php
- namespace Codwelt\SIMI\SDK\InfraStructure\Modelos; class CaracteristicaAlrededores { private $caracteristicaRaw; public function __construct(array $caracteristicaRaw) { $this->caracteristicaRaw = $caracteristicaRaw; } public function cantidad() { return $this->caracteristicaRaw["\x63\x61\x6e\x74\151\x64\x61\144"]; } public function descripcion() { return $this->caracteristicaRaw["\x44\145\x73\x63\162\x69\x70\143\x69\157\156"]; } }

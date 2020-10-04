@@ -134,7 +134,7 @@ class InmuebleDetail extends InmueblePreview
         if($this->caracteristicasExtenas == null){
             $this->caracteristicasExtenas = array();
             foreach ($this->jsonRAW["caracteristicasExternas"] as $caracteristicasExterna){
-                $this->caracteristicasExtenas[] = new CaracteristicaExternaSimi($caracteristicasExterna["Descripcion"],$caracteristicasExterna["cantidad"]);
+                $this->caracteristicasExtenas[] = new CaracteristicaExterna($caracteristicasExterna["Descripcion"],$caracteristicasExterna["cantidad"]);
             }
         }
         return $this->caracteristicasExtenas;
@@ -145,7 +145,7 @@ class InmuebleDetail extends InmueblePreview
         if($this->caracteristicasAlrededores == null){
             $this->caracteristicasAlrededores = array();
             foreach ($this->jsonRAW["caracteristicasAlrededores"] as $caracteristicasAlrededore){
-                $this->caracteristicasExtenas[] = new CaracteristicaAlrededoresSimi($caracteristicasAlrededore);
+                $this->caracteristicasExtenas[] = new CaracteristicaAlrededores($caracteristicasAlrededore);
             }
         }
         return $this->caracteristicasExtenas;
@@ -195,7 +195,7 @@ class InmuebleDetail extends InmueblePreview
         if($this->asesor == null){
             $asesorRaw = reset($this->jsonRAW["asesor"]);
             if($asesorRaw !== FALSE && is_array($asesorRaw)){
-                return new AsesorSimi($asesorRaw);
+                return new AsesorDetalleInmueble($asesorRaw);
             }
         }
         return $this->asesor;
