@@ -1,6 +1,8 @@
 <?php
 namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
 
+use Codwelt\SIMI\SDK\Domain\ModelRepository\PaginatorRepository;
+
 /**
  * Class Paginador
  * @package Codwelt\SIMI\SDK\InfraStructure\Modelos

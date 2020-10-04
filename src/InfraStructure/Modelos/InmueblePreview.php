@@ -141,8 +141,7 @@ class InmueblePreview
         return $this->jsonRAW["foto360"];
     }
 
-
-    public function enAriendo()
+    public function enArriendo()
     {
         $gestionMIn = strtolower($this->gestion());
         return $gestionMIn == "arriendo";
@@ -153,5 +152,12 @@ class InmueblePreview
         $gestionMIn = strtolower($this->gestion());
         return $gestionMIn == "arriendo/venta";
     }
+
+    public function nombre()
+    {
+        return ucwords(strtolower( $this->tipoInmueble() . " - " . $this->barrio() . ", " . $this->ciudad()));
+    }
+
+
 
 }

@@ -134,7 +134,7 @@ class InmuebleDetail extends InmueblePreview
         if($this->caracteristicasExtenas == null){
             $this->caracteristicasExtenas = array();
             foreach ($this->jsonRAW["caracteristicasExternas"] as $caracteristicasExterna){
-                $this->caracteristicasExtenas[] = new CaracteristicaExterna($caracteristicasExterna["Descripcion"],$caracteristicasExterna["cantidad"]);
+                $this->caracteristicasExtenas[] = new CaracteristicaExterna($caracteristicasExterna);
             }
         }
         return $this->caracteristicasExtenas;
