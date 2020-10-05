@@ -19,7 +19,7 @@ class CaracteristicaInterna
 
     public function descripcion()
     {
-        return $this->caracteristicaRaw["descripcion"];
+        return $this->caracteristicaRaw["Descripcion"];
     }
 
 }

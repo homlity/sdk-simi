@@ -42,6 +42,8 @@ class ObtenedorInmueblesSimilaresService
         $inmueblesSimilares = array_filter($inmueblesSimilares,function($inmuebleDestacado) use($inmuebleDetail){
             return $inmuebleDetail->identificacion() != $inmuebleDestacado->identificacion();
         });
+
+        $inmueblesSimilares = array_slice($inmueblesSimilares,0,($cantidad-1));
         return $inmueblesSimilares;
     }
 

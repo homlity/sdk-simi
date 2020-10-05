@@ -145,10 +145,10 @@ class InmuebleDetail extends InmueblePreview
         if($this->caracteristicasAlrededores == null){
             $this->caracteristicasAlrededores = array();
             foreach ($this->jsonRAW["caracteristicasAlrededores"] as $caracteristicasAlrededore){
-                $this->caracteristicasExtenas[] = new CaracteristicaAlrededores($caracteristicasAlrededore);
+                $this->caracteristicasAlrededores[] = new CaracteristicaAlrededores($caracteristicasAlrededore);
             }
         }
-        return $this->caracteristicasExtenas;
+        return $this->caracteristicasAlrededores;
     }
 
     /**
