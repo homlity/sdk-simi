@@ -23,7 +23,6 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "ext-mbstring": "*",
-        "pmaslak/php-obfuscator": "^1.1"
+        "ext-mbstring": "*"
     }
 }
