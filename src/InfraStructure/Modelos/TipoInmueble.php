@@ -8,7 +8,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class TipoInmueble
+class TipoInmueble implements \JsonSerializable
 {
 
     protected $tipoRaw;
@@ -23,7 +23,7 @@ class TipoInmueble
         return $this->tipoRaw["idTipoInm"];
     }
 
-    public function Nombre()
+    public function nombre()
     {
         return $this->tipoRaw["Nombre"];
     }
@@ -34,4 +34,11 @@ class TipoInmueble
     }
 
 
+    public function jsonSerialize()
+    {
+       return [
+           "id" => $this->id(),
+            "nombre" =>  $this->nombre()
+       ];
+    }
 }
