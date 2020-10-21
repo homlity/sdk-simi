@@ -44,9 +44,21 @@ abstract class ApiServiceProviderRepository
     public function setTokenProvider(TokenServiceProviderRespository  $tokenServiceProviderRespository)
     {
         $this->tokenProvider = $tokenServiceProviderRespository;
+        $this->validarToken();
         $this->establerApi();
     }
 
+    /**
+     * Se lanza Exception si el token es invalido
+     * @throws \Exception
+     */
+    private function validarToken()
+    {
+        if(!preg_match("/^([A-Za-z0-9]{40})-([0-9]*)$/",$this->tokenProvider->getToken())){
+            throw new \Exception("El token es invalido");
+        }
+
+    }
     public abstract function establerApi();
 
     /**
