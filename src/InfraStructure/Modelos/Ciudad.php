@@ -8,7 +8,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\Domain\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class Ciudad
+class Ciudad implements \JsonSerializable
 {
     private $dataRaw;
 
@@ -25,5 +25,10 @@ class Ciudad
     public function id()
     {
         return $this->dataRaw["id"];
+    }
+
+    public function jsonSerialize()
+    {
+       return $this->dataRaw;
     }
 }

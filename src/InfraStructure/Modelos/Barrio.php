@@ -8,7 +8,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\Domain\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class Barrio
+class Barrio implements \JsonSerializable
 {
 
 
@@ -29,4 +29,8 @@ class Barrio
         return $this->barrioRaw["nombre"];
     }
 
+    public function jsonSerialize()
+    {
+        return $this->barrioRaw;
+    }
 }

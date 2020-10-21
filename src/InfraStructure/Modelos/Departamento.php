@@ -6,7 +6,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\Domain\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class Departamento
+class Departamento implements \JsonSerializable
 {
     private $departamentoRaw;
 
@@ -25,4 +25,11 @@ class Departamento
         return $this->departamentoRaw["id"];
     }
 
+    public function jsonSerialize()
+    {
+       return [
+         "nombre" => $this->departamentoRaw["nombre"],
+         "id" => $this->departamentoRaw["id"]
+       ];
+    }
 }
