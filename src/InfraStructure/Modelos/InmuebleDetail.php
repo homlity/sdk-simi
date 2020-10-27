@@ -238,6 +238,11 @@ class InmuebleDetail extends InmueblePreview
         return $this->fotos()[0];
     }
 
+    public function direccion()
+    {
+        return $this->jsonRAW["Direccion"];
+    }
+
 
 
 }
