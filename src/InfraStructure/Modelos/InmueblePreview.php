@@ -72,17 +72,24 @@ class InmueblePreview
         return $this->jsonRAW["Tipo_Inmueble"];
     }
 
-    public function valorVenta()
+    public function valorVenta(bool $format = true)
     {
         $valor = preg_replace('/[^0-9]+/', '', $this->jsonRAW["Venta"]);
-        return number_format($valor,0, ',', '.');
+        if($format){
+            return number_format($valor,0, ',', '.');
+        }
+        return $valor;
+
     }
 
-    public function valorArriendo()
+    public function valorArriendo(bool $format = true)
     {
 
         $valor = preg_replace('/[^0-9]+/', '', $this->jsonRAW["Canon"]);
-        return number_format($valor,0, ',', '.');
+        if($format){
+            return number_format($valor,0, ',', '.');
+        }
+        return $valor;
 
     }
 
