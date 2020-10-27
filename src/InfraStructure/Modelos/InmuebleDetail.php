@@ -238,18 +238,6 @@ class InmuebleDetail extends InmueblePreview
         return $this->fotos()[0];
     }
 
-    public function valorVenta()
-    {
-        $valor = preg_replace('/[^0-9]+/', '', $this->jsonRAW["ValorVenta"]);
-        return number_format($valor,0, ',', '.');
-
-    }
-
-    public function valorArriendo()
-    {
-        $valor = preg_replace('/[^0-9]+/', '',$this->jsonRAW["ValorCanon"]);
-        return number_format($valor,0, ',', '.');
-    }
 
 
 }
