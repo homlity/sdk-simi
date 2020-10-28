@@ -143,6 +143,11 @@ class InmueblePreview
         return $this->jsonRAW["idGestion"];
     }
 
+    public function idTipoInmueble()
+    {
+        return $this->jsonRAW["idTipoInmueble"];
+    }
+
     public function foto360()
     {
         return $this->jsonRAW["foto360"];
