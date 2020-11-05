@@ -235,7 +235,7 @@ class InmuebleDetail extends InmueblePreview
 
     public function fotoPortada()
     {
-        return $this->fotos()[0];
+        return $this->fotos()[0]["foto"];
     }
 
     public function direccion()
