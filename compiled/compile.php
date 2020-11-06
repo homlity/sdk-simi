@@ -35,7 +35,7 @@ $obfuscator = new Obfuscator([
 
 $pathOtAbs = __DIR__."/compile";
 mkdir($pathOtAbs);
-$pathOut = $pathOtAbs."/visualinmueblesynfony";
+$pathOut = $pathOtAbs."/out";
 mkdir($pathOut);
 
 
