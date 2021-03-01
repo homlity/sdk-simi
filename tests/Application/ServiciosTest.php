@@ -5,7 +5,7 @@ namespace Codwelt\SIMI\SDK\Tests\Application;
 
 use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
 use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+
 use Codwelt\SIMI\SDK\Tests\TestCase;
 
 /**
@@ -16,11 +16,6 @@ use Codwelt\SIMI\SDK\Tests\TestCase;
 class ServiciosTest extends TestCase
 {
 
-    public function __construct(string $name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-    }
 
     public function test_InmublesSimilares()
     {
@@ -37,12 +32,3 @@ class ServiciosTest extends TestCase
 
 }
 
-
-class TokenServiceTestProvider implements TokenServiceProviderRespository
-{
-
-    public function getToken(): string
-    {
-       return getenv("token-simi");
-    }
-}

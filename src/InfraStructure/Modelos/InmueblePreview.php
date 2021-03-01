@@ -143,7 +143,11 @@ class InmueblePreview
         return $this->jsonRAW["idGestion"];
     }
 
-    public function idTipoInmueble()
+    /**
+     * Dispoinible en la version 2.1.2 del api simi
+     * @return mixed
+     */
+    protected function idTipoInmueble()
     {
         return $this->jsonRAW["idTipoInmueble"];
     }
