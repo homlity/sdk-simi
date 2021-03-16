@@ -16,7 +16,7 @@ abstract class ApiFachadaRepository
     /**
      * @var
      */
-    private $token;
+    protected $token;
 
     public function __construct(string $token)
     {

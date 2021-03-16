@@ -32,15 +32,7 @@ use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestTipoInmueble;
 class ApiFachada extends ApiFachadaRepository
 {
 
-    /**
-     * @var
-     */
-    private $token;
 
-    public function __construct(string $token)
-    {
-        $this->token = $token;
-    }
 
     /**
      * Devuelve el token del api
