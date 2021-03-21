@@ -8,7 +8,7 @@ namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
  * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
-class GestionInmueble
+class GestionInmueble implements \JsonSerializable
 {
 
     protected $gestionRaw ;
@@ -30,4 +30,8 @@ class GestionInmueble
     }
 
 
+    public function jsonSerialize()
+    {
+        return $this->gestionRaw;
+    }
 }
