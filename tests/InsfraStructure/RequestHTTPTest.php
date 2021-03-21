@@ -16,7 +16,6 @@ class RequestHTTPTest extends TestCase
 
         $api = new ApiFachada(getenv("token-simi"));
         $inmuebles = $api->getInmuebles();
-        var_dump($inmuebles['inmuebles']);
         $this->assertIsArray($inmuebles);
     }
 

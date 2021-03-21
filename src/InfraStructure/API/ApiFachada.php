@@ -35,15 +35,6 @@ class ApiFachada extends ApiFachadaRepository
 
 
     /**
-     * Devuelve el token del api
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
      * Devuelve un array de inmueble Preview
      * @param array $filters
      * @return array
