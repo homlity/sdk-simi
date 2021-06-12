@@ -4,8 +4,105 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2060de20a565c2a031f976d23992ca74",
-    "packages": [],
+    "content-hash": "540b0576caa6dbefab768ff29f1bb441",
+    "packages": [
+        {
+            "name": "nikic/php-parser",
+            "version": "v4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-tokenizer": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5 || ^7.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "time": "2019-01-12T16:31:37+00:00"
+        },
+        {
+            "name": "pmaslak/php-obfuscator",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pmaslak/php-obfuscator.git",
+                "reference": "242ea40db7a6f07b6bd15bdf0fd5e299d0a8f43c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pmaslak/php-obfuscator/zipball/242ea40db7a6f07b6bd15bdf0fd5e299d0a8f43c",
+                "reference": "242ea40db7a6f07b6bd15bdf0fd5e299d0a8f43c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "ext-tokenizer": "*",
+                "nikic/php-parser": "4.2",
+                "php": "^7.1"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "pmaslak\\PhpObfuscator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pawel Maslak",
+                    "email": "pawel@maslak.it",
+                    "homepage": "http://maslak.it",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP obfuscator",
+            "keywords": [
+                "obfuscator",
+                "php"
+            ],
+            "time": "2019-04-01T02:41:05+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
