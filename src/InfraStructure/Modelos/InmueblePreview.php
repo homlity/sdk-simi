@@ -145,6 +145,7 @@ class InmueblePreview
 
     /**
      * Dispoinible en la version 2.1.2 del api simi
+     *
      * @return mixed
      */
     protected function idTipoInmueble()
@@ -172,6 +173,12 @@ class InmueblePreview
     public function nombre()
     {
         return ucwords(strtolower( $this->tipoInmueble() . " - " . $this->barrio() . ", " . $this->ciudad()));
+    }
+
+
+    public function administracion()
+    {
+        return $this->jsonRAW["Administracion"];
     }
 
 
