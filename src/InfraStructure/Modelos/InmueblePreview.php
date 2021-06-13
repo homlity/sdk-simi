@@ -178,7 +178,8 @@ class InmueblePreview
 
     public function administracion()
     {
-        return $this->jsonRAW["Administracion"];
+        $valor = preg_replace('/[^0-9]+/', '', $this->jsonRAW["Administracion"]);
+        return number_format($valor,0, ',', '.');
     }
 
 
