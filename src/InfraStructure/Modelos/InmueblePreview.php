@@ -143,6 +143,11 @@ class InmueblePreview
         return $this->jsonRAW["idGestion"];
     }
 
+    public function video360()
+    {
+        return $this->jsonRAW["video360"];
+    }
+
     /**
      * Dispoinible en la version 2.1.2 del api simi
      *
@@ -151,11 +156,6 @@ class InmueblePreview
     protected function idTipoInmueble()
     {
         return $this->jsonRAW["idTipoInmueble"];
-    }
-
-    public function foto360()
-    {
-        return $this->jsonRAW["foto360"];
     }
 
     public function enArriendo()

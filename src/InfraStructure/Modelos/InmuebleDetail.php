@@ -242,9 +242,10 @@ class InmuebleDetail extends InmueblePreview
         return $this->jsonRAW["video"];
     }
 
-    public function video360()
+
+    public function fotos360()
     {
-        return $this->jsonRAW["video360"];
+        return $this->jsonRAW["fotos360"];
     }
 
     public function fotoPortada()
