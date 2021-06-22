@@ -22,4 +22,9 @@ class CaracteristicaInterna
         return $this->caracteristicaRaw["Descripcion"];
     }
 
+    public function cantidad()
+    {
+        return $this->caracteristicaRaw["cantidad"];
+    }
+
 }

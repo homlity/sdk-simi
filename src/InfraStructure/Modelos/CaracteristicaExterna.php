@@ -23,7 +23,7 @@ class CaracteristicaExterna
         return $this->carecteristicaRaw["Descripcion"];
     }
 
-    public function valor()
+    public function cantidad()
     {
         return $this->carecteristicaRaw["cantidad"];
     }
