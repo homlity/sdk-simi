@@ -234,7 +234,13 @@ class InmuebleDetail extends InmueblePreview
 
     public function video()
     {
-        return $this->jsonRAW["video"];
+        $urlVideo = $this->jsonRAW["video"];
+        if(!$urlVideo){
+            return null;
+        }
+        
+        $queryString = parse_url($urlVideo);
+        return $queryString["scheme"]."://".$queryString["host"]. preg_replace('#/+#', '/', $queryString["path"]);
     }
 
 
