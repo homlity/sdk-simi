@@ -22,7 +22,7 @@ class RequestGetInmueblesDestacados extends HttpClient
         $permitidos = array(
             //limites
             "limite",
-            "cantidad"
+            "total"
         );
 
 

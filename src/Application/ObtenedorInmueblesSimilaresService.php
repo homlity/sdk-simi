@@ -34,7 +34,7 @@ class ObtenedorInmueblesSimilaresService
             "zona" => $inmuebleDetail->idZona(),
             "tipoInm" => $inmuebleDetail->idTipoInmueble(),
             "tipOper" => $inmuebleDetail->idGestion(),
-            "cantidad" => $cantidad
+            "total" => $cantidad
         ));
 
         $inmueblesSimilares = $inmueblesSimilares["inmuebles"];
