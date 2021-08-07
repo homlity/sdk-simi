@@ -32,4 +32,9 @@ class CaracteristicaAlrededores
     {
         return $this->caracteristicaRaw["Descripcion"];
     }
+
+    public function observacion()
+    {
+        return $this->caracteristicaRaw["obser_det"];
+    }
 }
