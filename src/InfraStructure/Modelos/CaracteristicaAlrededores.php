@@ -18,6 +18,11 @@ class CaracteristicaAlrededores
         $this->caracteristicaRaw = $caracteristicaRaw;
     }
 
+    public function id()
+    {
+        return $this->caracteristicaRaw["idcaracteristica"];
+    }
+
     public function cantidad()
     {
         return $this->caracteristicaRaw["cantidad"];
