@@ -27,4 +27,9 @@ class CaracteristicaExterna
     {
         return $this->carecteristicaRaw["cantidad"];
     }
+
+    public function observacion()
+    {
+        return $this->carecteristicaRaw["obser_det"];
+    }
 }

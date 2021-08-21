@@ -27,4 +27,9 @@ class CaracteristicaInterna
         return $this->caracteristicaRaw["cantidad"];
     }
 
+    public function observacion()
+    {
+        return $this->caracteristicaRaw["obser_det"];
+    }
+
 }
