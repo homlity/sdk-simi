@@ -87,4 +87,6 @@ abstract class ApiFachadaRepository
 
     public abstract function getGestionesInmueble();
 
+
+
 }

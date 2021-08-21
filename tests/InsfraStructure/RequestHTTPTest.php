@@ -1,6 +1,7 @@
 <?php
 namespace Codwelt\SIMI\SDK\Tests\InsfraStructure;
 use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestEstadoInmuebles;
 use Codwelt\SIMI\SDK\Tests\TestCase;
 
 /**
@@ -68,6 +69,33 @@ class RequestHTTPTest extends TestCase
         $api = new ApiFachada(getenv("token-simi"));
         $asesores = $api->getGestionesInmueble();
         var_dump($asesores);
+    }
+
+    public function test_request_estadoInmuebles()
+    {
+
+        $request = new RequestEstadoInmuebles(getenv("token-simi"));
+
+
+        $estado = 2;
+        $gestion = 2;
+
+        $respuesta = $request->ejecutar([
+            "estado" => $estado,
+            "gestion" => $gestion
+        ]);
+
+        $url = "https://api.simicrm.app/crm/inmuebles?estado=".$estado."&gestion=".$gestion;
+
+
+
+        $this->assertEquals($url,$request->getUrlConstruida());
+
+        $this->assertTrue($respuesta->isSuccess());
+
+       // $this->assertIsArray($respuesta);
+
+        var_dump($respuesta->getBody());
     }
 
 }

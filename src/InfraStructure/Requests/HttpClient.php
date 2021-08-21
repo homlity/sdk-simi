@@ -25,7 +25,7 @@ abstract class HttpClient
     /**
      * @var
      */
-    protected $urlBase;
+    protected $urlBase = "http://simi-api.com/ApiSimiweb/response/";
 
     /**
      * @var
@@ -46,10 +46,13 @@ abstract class HttpClient
     public function __construct($token)
     {
         $this->token = $token;
-        $this->urlBase  = "http://simi-api.com/ApiSimiweb/response/";
         $this->method = self::$METHOD_METHOD_GET;
     }
 
+    public function getUrlConstruida()
+    {
+        return $this->urlBase.$this->endPoint;
+    }
 
     /**
      * Se encarga de hace el envio de la peticion
@@ -60,7 +63,7 @@ abstract class HttpClient
     protected function send()
     {
 
-        $url = $this->urlBase.$this->endPoint;
+       $url = $this->getUrlConstruida();
         if(filter_var($url,FILTER_VALIDATE_URL) === FALSE){
             throw new \Exception("Url Invalida");
         }

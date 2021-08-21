@@ -15,6 +15,7 @@ use Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorInmueblePreview;
 use Codwelt\SIMI\SDK\InfraStructure\Modelos\TipoInmueble;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestAsesores;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
+use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestEstadoInmuebles;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestFiltroInmuebles;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetBarrios;
 use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestGetCiudades;
@@ -226,4 +227,19 @@ class ApiFachada extends ApiFachadaRepository
     }
 
 
+    private function getEstadoInmueble(int $idEstado,$idGestion)
+    {
+        $request = new RequestEstadoInmuebles($this->token);
+        $response = $request->ejecutar([
+            "estado" => $idEstado,
+            "gestion" => $idGestion
+        ]);
+
+        $inmuebles = [];
+        if($response->isSuccess()){
+
+        }
+
+        return $inmuebles;
+    }
 }
