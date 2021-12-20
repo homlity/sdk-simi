@@ -259,6 +259,11 @@ class InmuebleDetail extends InmueblePreview
         return $this->jsonRAW["Direccion"];
     }
 
+    public function fotos360()
+    {
+        return $this->jsonRAW["fotos360"];
+    }
+
 
     public function valorVenta(bool $format = true)
     {
