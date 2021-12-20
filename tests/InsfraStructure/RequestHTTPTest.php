@@ -60,15 +60,15 @@ class RequestHTTPTest extends TestCase
     public function test_tipoInmueble()
     {
         $api = new ApiFachada(getenv("token-simi"));
-        $asesores = $api->getTiposInmueble();
-        var_dump($asesores);
+        $tiposINmueble = $api->getTiposInmueble();
+        $this->assertIsArray($tiposINmueble);
     }
 
     public function test_gestionInmueble()
     {
         $api = new ApiFachada(getenv("token-simi"));
-        $asesores = $api->getGestionesInmueble();
-        var_dump($asesores);
+        $tiposGestion = $api->getGestionesInmueble();
+        var_dump($tiposGestion);
     }
 
     public function test_request_estadoInmuebles()
