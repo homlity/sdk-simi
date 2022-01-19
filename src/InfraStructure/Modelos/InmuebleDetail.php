@@ -234,7 +234,7 @@ class InmuebleDetail extends InmueblePreview
 
     public function idSede()
     {
-        return $this->jsonRAW["id_sede"];
+        return $this->jsonRAW["sede"];
     }
 
     public function video()
