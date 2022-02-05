@@ -245,7 +245,8 @@ class InmuebleDetail extends InmueblePreview
         }
         
         $queryString = parse_url($urlVideo);
-        return $queryString["scheme"]."://".$queryString["host"]. preg_replace('#/+#', '/', $queryString["path"]);
+
+        return "https://".$queryString["host"]. preg_replace('#/+#', '/', $queryString["path"]);
     }
 
 
