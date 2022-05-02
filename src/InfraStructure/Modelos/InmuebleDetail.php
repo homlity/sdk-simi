@@ -294,7 +294,7 @@ class InmuebleDetail extends InmueblePreview
      */
     public function administracionIncluida():bool
     {
-        if(!isset($this->jsonRAW["AdmonIncluida"]) && $this->jsonRAW["AdmonIncluida"] != '0' && $this->jsonRAW['AdmonIncluida'] != '') {
+        if(isset($this->jsonRAW["AdmonIncluida"]) && $this->jsonRAW["AdmonIncluida"] == '1') {
             return true;
         }
 

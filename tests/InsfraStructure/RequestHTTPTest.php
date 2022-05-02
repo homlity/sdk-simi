@@ -98,4 +98,13 @@ class RequestHTTPTest extends TestCase
         var_dump($respuesta->getBody());
     }
 
+    public function test_request_detalle_inmueble_admon_incluida()
+    {
+
+        $api = new ApiFachada(getenv("token-simi"));
+        $inmueble = $api->getDetalleInmueble("503-4848");
+        var_dump($inmueble->administracionIncluida());
+    }
+
+
 }
