@@ -287,5 +287,18 @@ class InmuebleDetail extends InmueblePreview
 
     }
 
+    /**
+     * Indica si tiene o no administracion incluida
+     * @return bool
+     */
+    public function administracionIncluida():bool
+    {
+        if(!isset($this->jsonRAW["AdmonIncluida"]) && $this->jsonRAW["AdmonIncluida"] != '0' && $this->jsonRAW['AdmonIncluida'] != '') {
+            return true;
+        }
+
+        return false;
+    }
+
 
 }
