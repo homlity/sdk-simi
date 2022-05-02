@@ -234,7 +234,7 @@ class InmuebleDetail extends InmueblePreview
 
     public function idSede()
     {
-        return $this->jsonRAW["id_sede"];
+        return $this->jsonRAW["sede"];
     }
 
     public function video()
@@ -245,7 +245,8 @@ class InmuebleDetail extends InmueblePreview
         }
         
         $queryString = parse_url($urlVideo);
-        return $queryString["scheme"]."://".$queryString["host"]. preg_replace('#/+#', '/', $queryString["path"]);
+
+        return "https://".$queryString["host"]. preg_replace('#/+#', '/', $queryString["path"]);
     }
 
 

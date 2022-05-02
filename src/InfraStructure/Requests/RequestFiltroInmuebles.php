@@ -35,7 +35,8 @@ class RequestFiltroInmuebles extends HttpClient
             "campo",
             //limites
             "limite",
-            "total"
+            "total",
+            "sede"
         );
 
         foreach ($parameters as $filter => $value){
