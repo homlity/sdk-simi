@@ -262,7 +262,10 @@ class InmuebleDetail extends InmueblePreview
 
     public function direccion()
     {
-        return $this->jsonRAW["Direccion"];
+        if(isset($this->jsonRAW['Direccion'])) {
+            return $this->jsonRAW["Direccion"];
+        }
+        return null;
     }
 
 
