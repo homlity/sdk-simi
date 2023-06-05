@@ -70,9 +70,9 @@ class InmuebleDetail extends InmueblePreview
         return $this->jsonRAW["depto"];
     }
 
-    public function IdLocalidad()
+    public function idLocalidad()
     {
-        return $this->jsonRAW["IdLocalidad"];
+        return $this->jsonRAW["idLocalidad"];
     }
 
     public function nlocalidad()
