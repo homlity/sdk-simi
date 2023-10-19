@@ -18,6 +18,11 @@ class CaracteristicaExterna
         $this->carecteristicaRaw = $carecteristicaRaw;
     }
 
+    public function id()
+    {
+        return $this->carecteristicaRaw["idcaracteristica"];
+    }
+
     public function descripcion()
     {
         return $this->carecteristicaRaw["Descripcion"];

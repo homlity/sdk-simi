@@ -17,6 +17,11 @@ class CaracteristicaInterna
         $this->caracteristicaRaw = $caracteristicaRaw;
     }
 
+    public function id()
+    {
+        return $this->caracteristicaRaw["idcaracteristica"];
+    }
+
     public function descripcion()
     {
         return $this->caracteristicaRaw["Descripcion"];
