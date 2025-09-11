@@ -54,7 +54,7 @@ abstract class ApiServiceProviderRepository
      */
     private function validarToken()
     {
-        if(!preg_match("/^([A-Za-z0-9]{40})-([0-9]*)$/",$this->tokenProvider->getToken())){
+        if(!preg_match("/^([A-Za-z0-9]{40,50})-([0-9]+)$/",$this->tokenProvider->getToken())){
             throw new \Exception("El token es invalido");
         }
 

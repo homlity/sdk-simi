@@ -14,7 +14,6 @@ class RequestHTTPTest extends TestCase
 
     public function test_checkToken()
     {
-
         $api = new ApiFachada(getenv("token-simi"));
         $inmuebles = $api->getInmuebles();
         $this->assertIsArray($inmuebles);
@@ -102,8 +101,21 @@ class RequestHTTPTest extends TestCase
     {
 
         $api = new ApiFachada(getenv("token-simi"));
-        $inmueble = $api->getDetalleInmueble("503-4848");
+        $inmueble = $api->getDetalleInmueble(getenv("property-detail-code"));
         var_dump($inmueble->administracionIncluida());
+    }
+
+    public function test_request_detalle_inmueble_get_asesor()
+    {
+
+        $api = new ApiFachada(getenv("token-simi"));
+        $inmueble = $api->getDetalleInmueble(getenv("property-detail-code"));
+        
+        $asesor = $inmueble->asesor();
+        var_dump($asesor);
+        $this->assertNotEmpty($asesor->nombre());
+        $this->assertNotEmpty($asesor->celular());
+        $this->assertNotEmpty($asesor->email());
     }
 
 

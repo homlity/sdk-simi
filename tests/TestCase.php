@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Codwelt\SIMI\SDK\Tests;
 use PHPUnit\Framework\TestCase as Father;
 /**
