@@ -68,7 +68,7 @@ abstract class HttpClient
             throw new \Exception("Url Invalida");
         }
         $ch = curl_init();
-        $auth ='Authorization:'.$this->token;
+        $auth =':'.$this->token;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->method);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
