@@ -15,11 +15,27 @@ abstract class AsesorRepository
         $this->asesorRaw = $asesorRaw;
     }
 
-    public abstract function nombre();
+    public function raw(): array
+    {
+        return is_array($this->asesorRaw) ? $this->asesorRaw : [];
+    }
 
-    public abstract function celular();
+    public function id(): string
+    {
+        foreach (['id', 'idUser', 'codigo', 'ntercero', 'external_id'] as $key) {
+            if (!empty($this->asesorRaw[$key])) {
+                return (string) $this->asesorRaw[$key];
+            }
+        }
 
-    public abstract function foto();
+        return '';
+    }
 
-    public abstract function email();
+    abstract public function nombre();
+
+    abstract public function celular();
+
+    abstract public function foto();
+
+    abstract public function email();
 }

@@ -237,9 +237,30 @@ class ApiFachada extends ApiFachadaRepository
 
         $inmuebles = [];
         if($response->isSuccess()){
-
+            foreach ($this->extractEstadoItems($response->getBody()) as $item) {
+                if (is_array($item)) {
+                    $inmuebles[] = new InmueblePreview($item);
+                }
+            }
         }
 
         return $inmuebles;
+    }
+
+    private function extractEstadoItems($body): array
+    {
+        $items = [];
+
+        if (is_array($body)) {
+            if (isset($body["data"]) && is_array($body["data"])) {
+                $items = $body["data"];
+            } elseif (isset($body["Inmuebles"]) && is_array($body["Inmuebles"])) {
+                $items = $body["Inmuebles"];
+            } elseif (isset($body[0]) && is_array($body[0])) {
+                $items = $body;
+            }
+        }
+
+        return $items;
     }
 }
