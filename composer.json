@@ -1,6 +1,7 @@
 {
     "name": "homlity/sdk-simi",
     "description": "Sdk del api de simi",
+    "license": "MIT",
     "authors": [
         {
             "name": "FuriosoJack",
@@ -9,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Homlity\\SIMI\\SDK\\":  "src/"
+            "Homlity\\SIMI\\SDK\\": "src/"
         }
     },
     "autoload-dev": {
@@ -17,7 +18,6 @@
             "Homlity\\SIMI\\SDK\\Tests\\": "tests/"
         }
     },
-
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {

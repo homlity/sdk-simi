@@ -5,6 +5,11 @@ Todos los notables cambios de este proyecto estaran documentados en este archivo
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.4] - 2026-08-24
+### Added
+- Se declara la licencia **MIT** en `composer.json` y se añade el archivo `LICENSE`, que faltaba en
+  las versiones publicadas en Packagist.
+
 ## [3.0.0] - 2026-08-24
 ### Changed
 - **BREAKING**: el paquete pasa de `codwelt/sdk-simi` a `homlity/sdk-simi` y el namespace raíz de

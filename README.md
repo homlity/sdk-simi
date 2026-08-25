@@ -48,6 +48,7 @@
 18. [Pruebas](#18-pruebas)
 19. [Versionado y contribución](#19-versionado-y-contribución)
 20. [Soporte](#20-soporte)
+21. [Licencia](#21-licencia)
 
 ---
 
@@ -1285,6 +1286,24 @@ class ApiSimiFake extends ApiFachadaRepository
 | Repositorio | <https://github.com/homlity/sdk-simi> |
 | Reportar un problema | <https://github.com/homlity/sdk-simi/issues> |
 | Historial de cambios | [CHANGELOG.md](CHANGELOG.md) |
+| Licencia | [MIT](LICENSE) |
+
+---
+
+## 21. Licencia
+
+Este SDK se distribuye bajo la licencia **MIT**. Puedes usarlo, modificarlo, integrarlo en proyectos
+comerciales y redistribuirlo, siempre que conserves el aviso de copyright. El texto completo está en
+[`LICENSE`](LICENSE).
+
+```
+Copyright (c) 2026 Homlity
+```
+
+> La licencia cubre **el SDK**, no el acceso al API de SIMI: para consumir datos necesitas un token
+> válido entregado por SIMI o por la inmobiliaria propietaria del inventario.
+
+---
 
 <p align="center">
   <a href="https://homlity.com/desarrolladores/">

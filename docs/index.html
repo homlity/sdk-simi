@@ -1094,6 +1094,13 @@ php examples/06-exportar-inventario-csv.php &gt; inventario.csv</pre></div>
         <p>El proyecto sigue <em>Semantic Versioning</em> y registra los cambios en <code>CHANGELOG.md</code> con el formato <em>Keep a Changelog</em>. Fija la versión en tu <code>composer.json</code> y revisa el changelog antes de subir de versión menor.</p>
         <p>Si agregas un endpoint, sigue el patrón existente: una clase en <code>Requests/</code>, otra en <code>Responses/</code>, su modelo en <code>Modelos/</code>, y expón el método en <code>ApiFachada</code> <strong>y</strong> en <code>ApiFachadaRepository</code>.</p>
 
+        <h3>Licencia</h3>
+        <p>El SDK se distribuye bajo licencia <strong>MIT</strong>: puedes usarlo, modificarlo, integrarlo en proyectos comerciales y redistribuirlo, conservando el aviso de copyright.</p>
+        <div class="note">
+          <span class="label">La licencia cubre el SDK, no el API</span>
+          <p>MIT se aplica al código de este paquete. Para consumir datos necesitas además un token válido entregado por SIMI o por la inmobiliaria propietaria del inventario.</p>
+        </div>
+
         <h3>Dónde pedir ayuda</h3>
         <div class="table-wrap">
           <table>
@@ -1103,6 +1110,7 @@ php examples/06-exportar-inventario-csv.php &gt; inventario.csv</pre></div>
               <tr><td>Portal de desarrolladores</td><td><a href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">homlity.com/desarrolladores</a></td></tr>
               <tr><td>Repositorio</td><td><a href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">github.com/homlity/sdk-simi</a></td></tr>
               <tr><td>Reportar un problema</td><td><a href="https://github.com/homlity/sdk-simi/issues" target="_blank" rel="noopener">github.com/homlity/sdk-simi/issues</a></td></tr>
+              <tr><td>Licencia</td><td>MIT — ver <code>LICENSE</code> en el repositorio</td></tr>
             </tbody>
           </table>
         </div>
