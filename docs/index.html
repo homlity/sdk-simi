@@ -1,0 +1,1139 @@
+<title>SDK SIMI para PHP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --coral:#FF6852;
+  --coral-deep:#E24A34;
+  --ink:#37394A;
+  --ground:#F3F4F7;
+  --surface:#FFFFFF;
+  --surface-2:#EDEEF3;
+  --code-bg:#F0F1F6;
+  --code-fg:#2E3142;
+  --text:#282A38;
+  --text-soft:#5B5F72;
+  --text-faint:#868AA0;
+  --rule:#DFE1EA;
+  --rule-soft:#E9EAF1;
+  --warn:#B7791F;
+  --warn-bg:#FDF3E0;
+  --warn-rule:#EBCB92;
+  --tip:#1F7A66;
+  --tip-bg:#E6F4F0;
+  --tip-rule:#A8D6CA;
+  --shadow:0 1px 2px rgba(55,57,74,.06),0 8px 24px -16px rgba(55,57,74,.28);
+
+  --f-display:"Outfit","Trebuchet MS",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --coral:#FF7A66;
+    --coral-deep:#FF9E8E;
+    --ink:#C9CCDB;
+    --ground:#1E202B;
+    --surface:#262936;
+    --surface-2:#2E3140;
+    --code-bg:#171922;
+    --code-fg:#D5D8E6;
+    --text:#E6E8F0;
+    --text-soft:#AEB2C6;
+    --text-faint:#868BA3;
+    --rule:#383C4D;
+    --rule-soft:#313443;
+    --warn:#E9B75C;
+    --warn-bg:#33291A;
+    --warn-rule:#5C4823;
+    --tip:#6FD3B8;
+    --tip-bg:#1A2E29;
+    --tip-rule:#2E5449;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -18px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --coral:#FF7A66;
+  --coral-deep:#FF9E8E;
+  --ink:#C9CCDB;
+  --ground:#1E202B;
+  --surface:#262936;
+  --surface-2:#2E3140;
+  --code-bg:#171922;
+  --code-fg:#D5D8E6;
+  --text:#E6E8F0;
+  --text-soft:#AEB2C6;
+  --text-faint:#868BA3;
+  --rule:#383C4D;
+  --rule-soft:#313443;
+  --warn:#E9B75C;
+  --warn-bg:#33291A;
+  --warn-rule:#5C4823;
+  --tip:#6FD3B8;
+  --tip-bg:#1A2E29;
+  --tip-rule:#2E5449;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -18px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--text);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--coral-deep);text-decoration-color:color-mix(in srgb,var(--coral) 45%,transparent);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--coral)}
+:focus-visible{outline:2px solid var(--coral);outline-offset:2px;border-radius:3px}
+
+.shell{max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+.masthead{
+  border-bottom:1px solid var(--rule);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--coral) 7%,var(--ground)),var(--ground));
+}
+.masthead .shell{
+  display:flex;flex-wrap:wrap;align-items:center;gap:clamp(16px,3vw,36px);
+  padding-top:26px;padding-bottom:26px;
+}
+.brand-plate{
+  background:#fff;border:1px solid var(--rule);border-radius:14px;
+  padding:12px 18px;box-shadow:var(--shadow);display:block;line-height:0;flex:0 0 auto;
+}
+.brand-plate img{display:block;width:clamp(190px,24vw,250px);height:auto}
+.masthead-meta{display:flex;flex-direction:column;gap:6px;min-width:min(100%,300px);flex:1 1 320px}
+.eyebrow{
+  font-family:var(--f-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral-deep);
+}
+.masthead h1{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4.2vw,40px);
+  line-height:1.1;margin:0;letter-spacing:-.015em;text-wrap:balance;color:var(--text);
+}
+.masthead p{margin:0;color:var(--text-soft);max-width:60ch}
+.masthead-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:var(--f-mono);font-size:12.5px;font-weight:500;
+  padding:6px 12px;border-radius:999px;border:1px solid var(--rule);
+  background:var(--surface);color:var(--text-soft);text-decoration:none;
+}
+.pill:hover{border-color:var(--coral);color:var(--coral-deep)}
+.pill.is-primary{background:var(--coral);border-color:var(--coral);color:#fff}
+.pill.is-primary:hover{background:var(--coral-deep);border-color:var(--coral-deep);color:#fff}
+
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start;padding-bottom:80px}
+.toc{position:sticky;top:0;max-height:100vh;overflow-y:auto;padding:36px 0 40px;font-size:14px}
+.toc h2{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-faint);margin:0 0 12px;font-weight:500;
+}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;counter-reset:toc}
+.toc a{
+  display:flex;gap:10px;padding:5px 10px;border-radius:7px;text-decoration:none;
+  color:var(--text-soft);border-left:2px solid transparent;
+}
+.toc a::before{
+  counter-increment:toc;content:counter(toc,decimal-leading-zero);
+  font-family:var(--f-mono);font-size:11px;color:var(--text-faint);padding-top:3px;
+}
+.toc a:hover{background:var(--surface-2);color:var(--text)}
+.toc a.is-active{color:var(--coral-deep);border-left-color:var(--coral);background:var(--surface-2)}
+.toc a.is-active::before{color:var(--coral)}
+
+.content{padding:36px 0 0;min-width:0;max-width:78ch}
+.toc-mobile{display:none}
+
+section{padding-top:26px;scroll-margin-top:16px}
+section+section{margin-top:34px;border-top:1px solid var(--rule-soft)}
+h2.sec{
+  font-family:var(--f-display);font-weight:700;font-size:clamp(22px,2.6vw,29px);
+  line-height:1.2;letter-spacing:-.012em;margin:0 0 14px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;
+}
+h2.sec .num{font-family:var(--f-mono);font-size:13px;font-weight:500;color:var(--coral);letter-spacing:.04em}
+h3{font-family:var(--f-display);font-weight:600;font-size:19px;letter-spacing:-.008em;margin:30px 0 10px;color:var(--text)}
+h4{font-family:var(--f-body);font-weight:600;font-size:15px;margin:22px 0 8px;color:var(--text)}
+p{margin:0 0 14px;max-width:68ch}
+ul,ol{margin:0 0 14px;padding-left:22px;max-width:68ch}
+li{margin-bottom:6px}
+strong{font-weight:600;color:var(--text)}
+.lede{font-size:17.5px;color:var(--text-soft);max-width:64ch}
+
+.code{
+  position:relative;background:var(--code-bg);border:1px solid var(--rule);
+  border-radius:11px;margin:0 0 18px;overflow:hidden;
+}
+.code-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:7px 12px 7px 14px;border-bottom:1px solid var(--rule);
+  background:color-mix(in srgb,var(--code-bg) 60%,var(--surface));
+}
+.code-head span{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+.copy{
+  font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--rule);background:var(--surface);color:var(--text-soft);
+}
+.copy:hover{border-color:var(--coral);color:var(--coral-deep)}
+pre{
+  margin:0;padding:14px 16px;overflow-x:auto;
+  font-family:var(--f-mono);font-size:13px;line-height:1.7;color:var(--code-fg);
+  -moz-tab-size:4;tab-size:4;
+}
+code{font-family:var(--f-mono);font-size:.9em}
+p code,li code,td code,th code{
+  background:var(--surface-2);border:1px solid var(--rule-soft);
+  padding:1px 5px;border-radius:5px;color:var(--text);white-space:nowrap;
+}
+.cm{color:var(--text-faint);font-style:italic}
+.str{color:var(--tip)}
+
+.table-wrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--rule);border-radius:11px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:9px 14px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+thead th{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-faint);font-weight:500;background:var(--surface-2);white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td code{white-space:nowrap}
+.num-col{font-variant-numeric:tabular-nums}
+
+.note{
+  border:1px solid var(--rule);border-left:3px solid var(--coral);
+  background:var(--surface);border-radius:0 10px 10px 0;padding:13px 16px;margin:0 0 18px;
+}
+.note.warn{border-left-color:var(--warn-rule);background:var(--warn-bg)}
+.note.tip{border-left-color:var(--tip-rule);background:var(--tip-bg)}
+.note p:last-child{margin-bottom:0}
+.note .label{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  display:block;margin-bottom:5px;color:var(--coral-deep);
+}
+.note.warn .label{color:var(--warn)}
+.note.tip .label{color:var(--tip)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin:0 0 18px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:14px 16px}
+.card h4{margin:0 0 5px;font-family:var(--f-display);font-weight:600;font-size:15.5px}
+.card p{margin:0;font-size:14px;color:var(--text-soft)}
+
+.gotchas{list-style:none;padding:0;margin:0 0 18px;counter-reset:g;max-width:none}
+.gotchas li{
+  counter-increment:g;position:relative;padding:14px 16px 14px 52px;margin:0 0 10px;
+  background:var(--surface);border:1px solid var(--rule);border-radius:11px;
+}
+.gotchas li::before{
+  content:counter(g);position:absolute;left:14px;top:14px;
+  width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--coral) 15%,transparent);color:var(--coral-deep);
+  font-family:var(--f-mono);font-size:12px;font-weight:600;
+}
+.gotchas .code{margin:10px 0 0}
+
+.flow{background:var(--surface);border:1px solid var(--rule);border-radius:11px;padding:8px 4px;margin:0 0 18px;overflow-x:auto}
+.flow svg{display:block;min-width:560px;width:100%;height:auto}
+
+footer{border-top:1px solid var(--rule);background:var(--surface)}
+footer .shell{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding:28px 0}
+footer p{margin:0;color:var(--text-faint);font-size:14px}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .toc{display:none}
+  .toc-mobile{display:block;margin:28px 0 0}
+  .toc-mobile summary{
+    cursor:pointer;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--text-soft);padding:10px 14px;background:var(--surface);border:1px solid var(--rule);border-radius:10px;
+  }
+  .toc-mobile ol{columns:2;column-gap:18px;list-style:none;padding:14px 4px 0;margin:0;font-size:14px}
+  .toc-mobile a{color:var(--text-soft);text-decoration:none;display:block;padding:3px 0}
+  .content{padding-top:8px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="masthead">
+  <div class="shell">
+    <a class="brand-plate" href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">
+      <img src="data:image/webp;base64,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" alt="Homlity para desarrolladores">
+    </a>
+    <div class="masthead-meta">
+      <span class="eyebrow">Documentación para desarrolladores</span>
+      <h1>SDK SIMI para PHP</h1>
+      <p>Cliente PHP que convierte el API del CRM inmobiliario SIMI en objetos, filtros validados y modelos listos para usar en tu portal, tu app Laravel o tu sitio WordPress.</p>
+      <div class="masthead-links">
+        <a class="pill is-primary" href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">Portal de desarrolladores</a>
+        <a class="pill" href="https://homlity.com/" target="_blank" rel="noopener">homlity.com</a>
+        <a class="pill" href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">GitHub</a>
+        <span class="pill">composer require codwelt/sdk-simi</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <div class="layout">
+
+    <nav class="toc" aria-label="Contenido">
+      <h2>Contenido</h2>
+      <ol>
+        <li><a href="#que-es">Qué es y para qué sirve</a></li>
+        <li><a href="#instalacion">Requisitos e instalación</a></li>
+        <li><a href="#token">El token de SIMI</a></li>
+        <li><a href="#quickstart">Primeros pasos</a></li>
+        <li><a href="#arquitectura">Arquitectura</a></li>
+        <li><a href="#referencia">Referencia del API</a></li>
+        <li><a href="#filtros">Filtros disponibles</a></li>
+        <li><a href="#modelos">Modelos</a></li>
+        <li><a href="#servicios">Servicios y paginación</a></li>
+        <li><a href="#frameworks">Laravel y WordPress</a></li>
+        <li><a href="#cache">Rendimiento y caché</a></li>
+        <li><a href="#errores">Manejo de errores</a></li>
+        <li><a href="#advertencias">Advertencias del SDK</a></li>
+        <li><a href="#pruebas">Pruebas y soporte</a></li>
+      </ol>
+    </nav>
+
+    <main class="content">
+
+      <details class="toc-mobile">
+        <summary>Índice de contenido</summary>
+        <ol>
+          <li><a href="#que-es">Qué es</a></li>
+          <li><a href="#instalacion">Instalación</a></li>
+          <li><a href="#token">Token</a></li>
+          <li><a href="#quickstart">Primeros pasos</a></li>
+          <li><a href="#arquitectura">Arquitectura</a></li>
+          <li><a href="#referencia">Referencia</a></li>
+          <li><a href="#filtros">Filtros</a></li>
+          <li><a href="#modelos">Modelos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#frameworks">Frameworks</a></li>
+          <li><a href="#cache">Caché</a></li>
+          <li><a href="#errores">Errores</a></li>
+          <li><a href="#advertencias">Advertencias</a></li>
+          <li><a href="#pruebas">Pruebas</a></li>
+        </ol>
+      </details>
+
+      <section id="que-es">
+        <h2 class="sec"><span class="num">01</span> Qué es y para qué sirve</h2>
+        <p class="lede"><strong>SIMI</strong> es un CRM inmobiliario usado por inmobiliarias y constructoras para administrar su inventario, sus asesores y sus sedes. Expone ese inventario mediante un API HTTP autenticado con un token por inmobiliaria.</p>
+        <p>Ese API devuelve JSON crudo, con nombres de campo inconsistentes entre endpoints (<code>Codigo_Inmueble</code> frente a <code>idInm</code>, <code>banios</code> frente a <code>banos</code>, <code>Venta</code> frente a <code>ValorVenta</code>) y precios guardados como texto con símbolos y puntos. <strong>Este SDK existe para que nunca tengas que tocar ese JSON.</strong></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Consumiendo el API directo</th><th>Con el SDK</th></tr></thead>
+            <tbody>
+              <tr><td>Armar URLs tipo <code>/filtroInmueble/ciudad/5/total/12</code></td><td><code>$api-&gt;getInmuebles(["ciudad"=&gt;5,"total"=&gt;12])</code></td></tr>
+              <tr><td><code>curl</code> + <code>json_decode</code> + validar <code>status</code> en cada llamada</td><td>Objetos <code>Response*</code> con <code>isSuccess()</code></td></tr>
+              <tr><td>Leer <code>$json["Inmuebles"][0]["Codigo_Inmueble"]</code></td><td><code>$inmueble-&gt;identificacion()</code></td></tr>
+              <tr><td>Limpiar <code>"$ 350.000.000"</code> a punta de regex</td><td><code>$inmueble-&gt;valorVenta()</code></td></tr>
+              <tr><td>Descubrir los filtros válidos a base de errores</td><td>Lista blanca: un filtro inválido lanza excepción de inmediato</td></tr>
+              <tr><td>Reimplementar la paginación en cada proyecto</td><td><code>PaginadorInmueblePreview</code> + <code>PaginatorHTML</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Casos de uso típicos</h3>
+        <div class="cards">
+          <div class="card"><h4>Portales inmobiliarios</h4><p>Listados con filtros, ficha de detalle, mapa, galería, video y recorridos 360.</p></div>
+          <div class="card"><h4>Home y landings</h4><p>Carrusel de inmuebles destacados con precio, foto y ubicación reales.</p></div>
+          <div class="card"><h4>Buscadores</h4><p>Selects encadenados departamento → ciudad → barrio, tipos y gestiones.</p></div>
+          <div class="card"><h4>Equipo comercial</h4><p>Listado paginado de asesores con foto, celular y correo.</p></div>
+          <div class="card"><h4>Feeds y sincronizaciones</h4><p>Exportar el inventario hacia portales externos u otros sistemas.</p></div>
+          <div class="card"><h4>Widgets de WordPress</h4><p>Shortcodes alimentados con inventario real y caché por transient.</p></div>
+        </div>
+      </section>
+
+      <section id="instalacion">
+        <h2 class="sec"><span class="num">02</span> Requisitos e instalación</h2>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Requisito</th><th>Detalle</th></tr></thead>
+            <tbody>
+              <tr><td>PHP</td><td>7.x u 8.x</td></tr>
+              <tr><td><code>ext-curl</code></td><td>Obligatoria: toda petición HTTP se hace con cURL</td></tr>
+              <tr><td><code>ext-json</code></td><td>Obligatoria: parseo de las respuestas</td></tr>
+              <tr><td><code>ext-mbstring</code></td><td>Obligatoria</td></tr>
+              <tr><td>Token SIMI</td><td>Lo entrega SIMI o la inmobiliaria (ver sección 3)</td></tr>
+              <tr><td>Red</td><td>Salida hacia <code>simi-api.com</code> y <code>api.simicrm.app</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Instalar con Composer</h3>
+        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>composer require codwelt/sdk-simi</pre></div>
+        <p>El nombre del paquete es <code>codwelt/sdk-simi</code> y el repositorio es <a href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">github.com/homlity/sdk-simi</a>.</p>
+
+        <h3>Instalar desde el repositorio</h3>
+        <p>Si trabajas contra un fork, una rama de desarrollo o un Packagist privado, declara el repositorio VCS en tu <code>composer.json</code>:</p>
+        <div class="code"><div class="code-head"><span>composer.json</span><button class="copy" type="button">copiar</button></div><pre>{
+  <span class="str">"repositories"</span>: [
+    { <span class="str">"type"</span>: <span class="str">"vcs"</span>, <span class="str">"url"</span>: <span class="str">"https://github.com/homlity/sdk-simi.git"</span> }
+  ],
+  <span class="str">"require"</span>: {
+    <span class="str">"codwelt/sdk-simi"</span>: <span class="str">"^2.5"</span>
+  }
+}</pre></div>
+        <p>Para fijar una versión exacta usa cualquiera de los tags publicados: <code>v2.5.7</code>, <code>v2.5.6</code>, <code>v2.5.5</code>…</p>
+
+        <h3>Autoload</h3>
+        <p>El paquete usa PSR-4: el namespace <code>Codwelt\SIMI\SDK\</code> apunta a <code>src/</code>. Basta con incluir el autoloader de Composer.</p>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>require __DIR__ . <span class="str">'/vendor/autoload.php'</span>;</pre></div>
+      </section>
+
+      <section id="token">
+        <h2 class="sec"><span class="num">03</span> El token de SIMI</h2>
+        <p>Todas las peticiones se autentican con un único token que SIMI entrega a cada inmobiliaria. El SDK lo valida <strong>antes</strong> de permitir cualquier llamada, contra esta expresión regular:</p>
+        <div class="code"><div class="code-head"><span>validación del token</span><button class="copy" type="button">copiar</button></div><pre>/^([A-Za-z0-9]{40,50})-([0-9]+)$/</pre></div>
+        <p>Es decir: entre <strong>40 y 50 caracteres alfanuméricos</strong>, un <strong>guion</strong>, y un <strong>número</strong> que identifica la inmobiliaria o sede. Si el token no cumple el formato, <code>setTokenProvider()</code> lanza <code>Exception: El token es invalido</code>.</p>
+
+        <h3>Cómo viaja en cada petición</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Destino</th><th>Mecanismo</th></tr></thead>
+            <tbody>
+              <tr><td><code>http://simi-api.com/ApiSimiweb/response/</code></td><td>HTTP Basic Auth con usuario vacío y el token como contraseña (<code>CURLOPT_USERPWD = ":$token"</code>)</td></tr>
+              <tr><td><code>https://api.simicrm.app/crm/</code><br>(solo <code>getEstadoInmueble</code>)</td><td>Cabeceras <code>token: &lt;token&gt;</code> y <code>Accept: application/vnd.apisimi.v3+json</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note warn">
+          <span class="label">Nunca lo publiques</span>
+          <p>El token da acceso completo al inventario de la inmobiliaria. No lo escribas en el código fuente ni lo subas al repositorio: cárgalo desde variables de entorno. Para eso existe la interfaz <code>TokenServiceProviderRespository</code>, que recibe el SDK en lugar del token en crudo.</p>
+        </div>
+      </section>
+
+      <section id="quickstart">
+        <h2 class="sec"><span class="num">04</span> Primeros pasos</h2>
+
+        <h3>Paso 1 — Implementa tu proveedor de token</h3>
+        <p>El SDK no recibe el token: recibe un objeto que sabe dónde encontrarlo. Así puedes leerlo del entorno, de la base de datos, de un gestor de secretos o de la configuración multi-sitio sin tocar el SDK.</p>
+        <div class="code"><div class="code-head"><span>TokenSimiProvider.php</span><button class="copy" type="button">copiar</button></div><pre>&lt;?php
+
+use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+
+class TokenSimiProvider implements TokenServiceProviderRespository
+{
+    public function getToken(): string
+    {
+        return getenv(<span class="str">'SIMI_TOKEN'</span>);
+    }
+}</pre></div>
+
+        <h3>Paso 2 — Construye el API</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>&lt;?php
+require __DIR__ . <span class="str">'/vendor/autoload.php'</span>;
+
+use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+
+$provider = ApiServiceProvider::build();
+$provider-&gt;setTokenProvider(new TokenSimiProvider());   <span class="cm">// valida el token aquí</span>
+
+$api = $provider-&gt;getAPi();                             <span class="cm">// instancia de ApiFachada</span></pre></div>
+        <div class="note tip">
+          <span class="label">Atajo</span>
+          <p>Si no necesitas el proveedor, instancia la fachada directamente con <code>new ApiFachada($token)</code>. Esa vía es la recomendada dentro de un contenedor de dependencias, pero <strong>no valida</strong> el formato del token.</p>
+        </div>
+
+        <h3>Paso 3 — Consulta inmuebles</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>$resultado = $api-&gt;getInmuebles([
+    <span class="str">'ciudad'</span>  =&gt; 5,
+    <span class="str">'tipOper'</span> =&gt; 1,   <span class="cm">// gestión: venta / arriendo</span>
+    <span class="str">'total'</span>   =&gt; 12,  <span class="cm">// registros por página</span>
+    <span class="str">'limite'</span>  =&gt; 1,   <span class="cm">// página</span>
+]);
+
+$inmuebles = $resultado[<span class="str">'inmuebles'</span>];   <span class="cm">// InmueblePreview[]</span>
+$paginador = $resultado[<span class="str">'paginador'</span>];   <span class="cm">// PaginadorInmueblePreview|null</span>
+
+foreach ($inmuebles as $inmueble) {
+    echo $inmueble-&gt;nombre();           <span class="cm">// "Apartamento - El Poblado, Medellín"</span>
+    echo $inmueble-&gt;identificacion();   <span class="cm">// "503-4848"</span>
+    echo $inmueble-&gt;valorVenta();       <span class="cm">// "350.000.000"</span>
+    echo $inmueble-&gt;fotoPortada();      <span class="cm">// URL de la foto principal</span>
+}</pre></div>
+
+        <h3>Paso 4 — Ficha de detalle</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>$detalle = $api-&gt;getDetalleInmueble(<span class="str">'503-4848'</span>);
+
+if ($detalle === null) {          <span class="cm">// no existe, o el API no respondió</span>
+    http_response_code(404);
+    exit(<span class="str">'Inmueble no disponible'</span>);
+}
+
+echo $detalle-&gt;tipoInmueble();     <span class="cm">// "APARTAMENTO"</span>
+echo $detalle-&gt;areaConstruida();   <span class="cm">// "85"</span>
+
+foreach ($detalle-&gt;fotos() as $foto) {
+    echo <span class="str">'&lt;img src="'</span> . htmlspecialchars($foto[<span class="str">'foto'</span>]) . <span class="str">'"&gt;'</span>;
+}
+
+$asesor = $detalle-&gt;asesor();
+if ($asesor !== null) {
+    echo $asesor-&gt;nombre() . <span class="str">' - '</span> . $asesor-&gt;celular();
+}</pre></div>
+      </section>
+
+      <section id="arquitectura">
+        <h2 class="sec"><span class="num">05</span> Arquitectura</h2>
+        <p>El paquete separa por capas al estilo de una arquitectura hexagonal: el <strong>dominio</strong> define contratos, la <strong>infraestructura</strong> habla HTTP y mapea JSON, y la <strong>aplicación</strong> ofrece casos de uso ya resueltos.</p>
+
+        <div class="flow">
+          <svg viewBox="0 0 700 156" role="img" aria-label="Flujo de una llamada: tu código, proveedor de token, fachada, API de SIMI, respuesta y modelos">
+            <defs>
+              <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--text-faint)"></path>
+              </marker>
+            </defs>
+            <g font-family="IBM Plex Sans, sans-serif" font-size="11.5">
+              <rect x="6" y="44" width="118" height="58" rx="10" fill="var(--surface-2)" stroke="var(--rule)"></rect>
+              <text x="65" y="68" text-anchor="middle" fill="var(--text)" font-weight="600">Tu código</text>
+              <text x="65" y="85" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">controlador / vista</text>
+
+              <line x1="128" y1="73" x2="148" y2="73" stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#ar)"></line>
+
+              <rect x="152" y="30" width="126" height="86" rx="10" fill="var(--surface)" stroke="var(--rule)"></rect>
+              <text x="215" y="52" text-anchor="middle" fill="var(--coral-deep)" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1">DOMAIN</text>
+              <text x="215" y="72" text-anchor="middle" fill="var(--text)" font-weight="600">TokenProvider</text>
+              <text x="215" y="88" text-anchor="middle" fill="var(--text)" font-weight="600">ApiServiceProvider</text>
+              <text x="215" y="104" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">valida el token</text>
+
+              <line x1="282" y1="73" x2="302" y2="73" stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#ar)"></line>
+
+              <rect x="306" y="30" width="126" height="86" rx="10" fill="var(--surface)" stroke="var(--rule)"></rect>
+              <text x="369" y="52" text-anchor="middle" fill="var(--coral-deep)" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1">INFRASTRUCTURE</text>
+              <text x="369" y="72" text-anchor="middle" fill="var(--text)" font-weight="600">ApiFachada</text>
+              <text x="369" y="88" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">Request* + cURL</text>
+              <text x="369" y="104" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">valida filtros</text>
+
+              <line x1="436" y1="73" x2="456" y2="73" stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#ar)"></line>
+
+              <rect x="460" y="44" width="100" height="58" rx="10" fill="var(--surface-2)" stroke="var(--rule)"></rect>
+              <text x="510" y="68" text-anchor="middle" fill="var(--text)" font-weight="600">API SIMI</text>
+              <text x="510" y="85" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">JSON crudo</text>
+
+              <line x1="564" y1="73" x2="584" y2="73" stroke="var(--text-faint)" stroke-width="1.4" marker-end="url(#ar)"></line>
+
+              <rect x="588" y="30" width="106" height="86" rx="10" fill="var(--surface)" stroke="var(--coral)"></rect>
+              <text x="641" y="52" text-anchor="middle" fill="var(--coral-deep)" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1">RESPONSE</text>
+              <text x="641" y="72" text-anchor="middle" fill="var(--text)" font-weight="600">Modelos</text>
+              <text x="641" y="88" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">InmueblePreview</text>
+              <text x="641" y="104" text-anchor="middle" fill="var(--text-soft)" font-size="10.5">Paginador</text>
+
+              <text x="350" y="142" text-anchor="middle" fill="var(--text-faint)" font-size="10.5">Los filtros inválidos y el token mal formado fallan antes de salir a la red.</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="code"><div class="code-head"><span>estructura de src/</span><button class="copy" type="button">copiar</button></div><pre>src/
+├── Domain/                      <span class="cm">← contratos y puertos (lo estable)</span>
+│   ├── API/ApiFachadaRepository.php          <span class="cm">contrato del API</span>
+│   ├── API/ApiModelRepositoryFachada.php     <span class="cm">variante con modelos de dominio</span>
+│   ├── ModelRepository/Inmueble.php
+│   └── Providers/
+│       ├── ApiServiceProviderRepository.php  <span class="cm">fábrica + validación del token</span>
+│       ├── ApiServiceProvider.php
+│       ├── ApiModelRepositoryServiceProvider.php
+│       └── TokenServiceProviderRespository.php  <span class="cm">← la implementas tú</span>
+│
+├── InfraStructure/              <span class="cm">← HTTP y mapeo del JSON</span>
+│   ├── API/ApiFachada.php       <span class="cm">los métodos que usas</span>
+│   ├── Requests/                <span class="cm">una clase por endpoint + HttpClient (cURL)</span>
+│   ├── Responses/               <span class="cm">isSuccess() / getBody()</span>
+│   └── Modelos/                 <span class="cm">InmueblePreview, InmuebleDetail, Ciudad…</span>
+│
+├── Application/                 <span class="cm">← casos de uso listos</span>
+│   ├── ObtenedorInmueblesSimilaresService.php
+│   ├── ObtenedorUrlFichaInmuebleService.php
+│   └── Models/PaginatorHTML.php
+│
+└── Helpers/</pre></div>
+
+        <div class="note tip">
+          <span class="label">Por qué te importa</span>
+          <p>Tipa tu código contra la abstracción <code>ApiFachadaRepository</code>, no contra <code>ApiFachada</code>. Eso te permite inyectar un doble de prueba o un decorador con caché sin tocar nada más — y es exactamente lo que hacen los servicios de <code>Application/</code>, que reciben la abstracción por constructor.</p>
+        </div>
+      </section>
+
+      <section id="referencia">
+        <h2 class="sec"><span class="num">06</span> Referencia del API</h2>
+        <p>Métodos de <code>ApiFachada</code>. Todos pueden lanzar <code>\Exception</code> por URL inválida, filtro no permitido o parámetro requerido faltante.</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Método</th><th>Devuelve</th><th>Endpoint</th></tr></thead>
+            <tbody>
+              <tr><td><code>getInmuebles(array $filtros = [])</code></td><td><code>['inmuebles' =&gt; InmueblePreview[], 'paginador' =&gt; …]</code></td><td><code>v2.1.1/filtroInmueble/…</code></td></tr>
+              <tr><td><code>getDetalleInmueble($codigo)</code></td><td><code>InmuebleDetail</code> o <code>null</code></td><td><code>v2/inmueble/codInmueble/{codigo}</code></td></tr>
+              <tr><td><code>getInmueblesDestacados(array $filtros = [])</code></td><td><code>['inmuebles' =&gt; …, 'paginador' =&gt; …]</code></td><td><code>v21/inmueblesDestacados/…</code></td></tr>
+              <tr><td><code>getDepartamentos()</code></td><td><code>Departamento[]</code></td><td><code>v2/departamento</code></td></tr>
+              <tr><td><code>getCiudades($idDepartamento)</code></td><td><code>Ciudad[]</code></td><td><code>v2/ciudad/idDepartamento/{id}</code></td></tr>
+              <tr><td><code>getBarrios($idCiudad)</code></td><td><code>Barrio[]</code></td><td><code>v2/barrios/idCiudad/{id}</code></td></tr>
+              <tr><td><code>getTiposInmueble()</code></td><td><code>TipoInmueble[]</code></td><td><code>v2/tipoInmuebles/unique/1</code></td></tr>
+              <tr><td><code>getGestionesInmueble()</code></td><td><code>GestionInmueble[]</code></td><td><code>gestion</code></td></tr>
+              <tr><td><code>getAsesores(array $filtros = [])</code></td><td><code>['asesores' =&gt; AsesorUsuario[], 'paginador' =&gt; …]</code></td><td><code>usuarios/…</code></td></tr>
+              <tr><td><code>getEstadoInmueble(int $estado, $gestion)</code></td><td><code>InmueblePreview[]</code></td><td><code>api.simicrm.app/crm/inmuebles</code></td></tr>
+              <tr><td><code>getToken()</code></td><td><code>string</code></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Catálogos como JSON</h3>
+        <p><code>Departamento</code>, <code>Ciudad</code>, <code>Barrio</code>, <code>TipoInmueble</code> y <code>GestionInmueble</code> implementan <code>JsonSerializable</code>, así que puedes devolverlos tal cual desde un endpoint propio para alimentar tu frontend.</p>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>header(<span class="str">'Content-Type: application/json'</span>);
+echo json_encode($api-&gt;getCiudades(5));
+<span class="cm">// [{"id":"1","nombre":"MEDELLIN"}, …]</span></pre></div>
+
+        <h3>Tipos e inventario</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>foreach ($api-&gt;getTiposInmueble() as $tipo) {
+    printf(<span class="str">"%s (%d)\n"</span>, $tipo-&gt;nombre(), $tipo-&gt;totalInmuebles());
+    <span class="cm">// Apartamento (124)  ← ideal para menús y facetas</span>
+}
+
+foreach ($api-&gt;getGestionesInmueble() as $gestion) {
+    <span class="cm">// el id() de la gestión es el valor del filtro tipOper</span>
+    echo $gestion-&gt;id() . <span class="str">' → '</span> . $gestion-&gt;nombre();
+}</pre></div>
+
+        <div class="note warn">
+          <span class="label">getEstadoInmueble usa otro API</span>
+          <p>Ese método consulta <code>https://api.simicrm.app/crm/</code> con la versión <code>v3</code> y autenticación por cabecera, no el API web de SIMI. Si tu token no está habilitado allí, devolverá un array vacío aunque el resto del SDK funcione con normalidad.</p>
+        </div>
+      </section>
+
+      <section id="filtros">
+        <h2 class="sec"><span class="num">07</span> Filtros disponibles</h2>
+        <p>Los filtros se validan contra una lista blanca: cualquier clave fuera de ella lanza <code>Exception: Filtro (x) no esta permitido en APISIMI</code>. Si saneas tus <code>$_GET</code> antes de llamar al SDK, evitas ese error por completo.</p>
+
+        <h3><code>getInmuebles()</code></h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Filtro</th><th>Significado</th><th>Ejemplo</th></tr></thead>
+            <tbody>
+              <tr><td><code>departamento</code></td><td>Id de departamento, de <code>getDepartamentos()</code></td><td class="num-col">5</td></tr>
+              <tr><td><code>ciudad</code></td><td>Id de ciudad, de <code>getCiudades()</code></td><td class="num-col">1</td></tr>
+              <tr><td><code>zona</code></td><td>Id de zona</td><td class="num-col">12</td></tr>
+              <tr><td><code>barrio</code></td><td>Id de barrio, de <code>getBarrios()</code></td><td class="num-col">320</td></tr>
+              <tr><td><code>tipoInm</code></td><td>Id de tipo de inmueble</td><td class="num-col">1</td></tr>
+              <tr><td><code>tipOper</code></td><td>Id de gestión u operación</td><td class="num-col">2</td></tr>
+              <tr><td><code>areamin</code> / <code>areamax</code></td><td>Rango de área construida en m²</td><td class="num-col">50 / 180</td></tr>
+              <tr><td><code>valmin</code> / <code>valmax</code></td><td>Rango de precio, sin puntos ni símbolos</td><td class="num-col">200000000</td></tr>
+              <tr><td><code>alcobas</code></td><td>Número de alcobas</td><td class="num-col">3</td></tr>
+              <tr><td><code>banios</code></td><td>Número de baños</td><td class="num-col">2</td></tr>
+              <tr><td><code>garajes</code></td><td>Número de garajes</td><td class="num-col">1</td></tr>
+              <tr><td><code>campo</code></td><td>Campo por el cual ordenar</td><td><code>Venta</code></td></tr>
+              <tr><td><code>order</code></td><td>Sentido del orden</td><td><code>ASC</code> / <code>DESC</code></td></tr>
+              <tr><td><code>limite</code></td><td>Página solicitada — por defecto <code>1</code></td><td class="num-col">2</td></tr>
+              <tr><td><code>total</code></td><td>Registros por página — por defecto <code>30</code></td><td class="num-col">12</td></tr>
+              <tr><td><code>sede</code></td><td>Id de sede, para inmobiliarias multi-sede</td><td class="num-col">503</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Los otros dos listados</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Método</th><th>Filtros permitidos</th><th>Valores por defecto</th></tr></thead>
+            <tbody>
+              <tr><td><code>getInmueblesDestacados()</code></td><td><code>limite</code>, <code>total</code></td><td>—</td></tr>
+              <tr><td><code>getAsesores()</code></td><td><code>limite</code>, <code>cantidad</code>, <code>asesor</code></td><td><code>cantidad = 30</code>, <code>limite = 1</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Saneado recomendado</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>$permitidos = [<span class="str">'departamento'</span>,<span class="str">'ciudad'</span>,<span class="str">'zona'</span>,<span class="str">'barrio'</span>,<span class="str">'tipoInm'</span>,<span class="str">'tipOper'</span>,
+               <span class="str">'areamin'</span>,<span class="str">'areamax'</span>,<span class="str">'valmin'</span>,<span class="str">'valmax'</span>,<span class="str">'banios'</span>,<span class="str">'garajes'</span>,<span class="str">'alcobas'</span>];
+
+$filtros = array_intersect_key($_GET, array_flip($permitidos));
+$filtros = array_filter($filtros, fn($v) =&gt; $v !== <span class="str">''</span> &amp;&amp; $v !== null);
+
+$filtros[<span class="str">'total'</span>]  = 12;
+$filtros[<span class="str">'limite'</span>] = max(1, (int) ($_GET[<span class="str">'page'</span>] ?? 1));
+
+$resultado = $api-&gt;getInmuebles($filtros);</pre></div>
+
+        <div class="note warn">
+          <span class="label">Los ceros se pierden</span>
+          <p><code>getInmuebles()</code> descarta internamente los filtros con valor vacío usando <code>!empty()</code>, así que <code>['garajes' =&gt; 0]</code> nunca llega al API. Para el caso «sin garaje» tendrás que filtrar del lado de tu aplicación.</p>
+        </div>
+      </section>
+
+      <section id="modelos">
+        <h2 class="sec"><span class="num">08</span> Modelos</h2>
+        <p>Cada método del API devuelve objetos, no arrays. Los getters ocultan los nombres de campo del JSON crudo, que cambian entre el listado y el detalle.</p>
+
+        <h3><code>InmueblePreview</code></h3>
+        <p>Objeto liviano que devuelven <code>getInmuebles()</code>, <code>getInmueblesDestacados()</code> y <code>getEstadoInmueble()</code>.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Método</th><th>Devuelve</th><th>Campo crudo</th></tr></thead>
+            <tbody>
+              <tr><td><code>identificacion()</code></td><td>Código público, p. ej. <code>503-4848</code></td><td><code>Codigo_Inmueble</code></td></tr>
+              <tr><td><code>nombre()</code></td><td><em>"Apartamento - El Poblado, Medellín"</em> (generado)</td><td>—</td></tr>
+              <tr><td><code>tipoInmueble()</code></td><td>Nombre del tipo</td><td><code>Tipo_Inmueble</code></td></tr>
+              <tr><td><code>gestion()</code> / <code>idGestion()</code></td><td>Operación y su id</td><td><code>Gestion</code> / <code>idGestion</code></td></tr>
+              <tr><td><code>enArriendo()</code> / <code>enArriendoVenta()</code></td><td><code>bool</code> según la gestión</td><td>—</td></tr>
+              <tr><td><code>valorVenta(bool $format = true)</code></td><td><code>"350.000.000"</code> o <code>350000000</code></td><td><code>Venta</code></td></tr>
+              <tr><td><code>valorArriendo(bool $format = true)</code></td><td>Igual que el anterior</td><td><code>Canon</code></td></tr>
+              <tr><td><code>administracion($format = false)</code></td><td>Valor de administración</td><td><code>Administracion</code></td></tr>
+              <tr><td><code>alcobas()</code> / <code>baños()</code> / <code>garaje()</code></td><td>Conteos</td><td><code>Alcobas</code> / <code>banios</code> / <code>garaje</code></td></tr>
+              <tr><td><code>areaConstruida()</code> / <code>areaLote()</code></td><td>Áreas en m²</td><td><code>AreaConstruida</code> / <code>AreaLote</code></td></tr>
+              <tr><td><code>estrato()</code> / <code>edad()</code> / <code>estado()</code></td><td>Datos adicionales</td><td><code>Estrato</code> / <code>EdadInmueble</code> / <code>idEstado</code></td></tr>
+              <tr><td><code>departamento()</code> / <code>ciudad()</code> / <code>zona()</code> / <code>barrio()</code></td><td>Ubicación en texto</td><td><code>Departamento</code>, <code>Ciudad</code>, <code>Zona</code>, <code>Barrio</code></td></tr>
+              <tr><td><code>latitud()</code> / <code>longitud()</code></td><td>Coordenadas para el mapa</td><td><code>latitud</code> / <code>longitud</code></td></tr>
+              <tr><td><code>descripcion()</code></td><td>Descripción larga</td><td><code>descripcionlarga</code></td></tr>
+              <tr><td><code>fotoPortada()</code></td><td>URL de la foto principal</td><td><code>foto1</code></td></tr>
+              <tr><td><code>logo()</code> / <code>video360()</code></td><td>Logo de la inmobiliaria y recorrido 360</td><td><code>logo</code> / <code>video360</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note tip">
+          <span class="label">Precios: formateado o numérico</span>
+          <p><code>valorVenta()</code> devuelve <code>"350.000.000"</code> para mostrar; <code>valorVenta(false)</code> devuelve <code>"350000000"</code> para comparar, ordenar, exportar a CSV o emitir datos estructurados JSON-LD.</p>
+        </div>
+
+        <h3><code>InmuebleDetail extends InmueblePreview</code></h3>
+        <p>Lo devuelve <code>getDetalleInmueble()</code>. Sobrescribe todos los getters porque el endpoint de detalle usa otros nombres de campo, y añade lo que solo existe en la ficha.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Método</th><th>Devuelve</th></tr></thead>
+            <tbody>
+              <tr><td><code>identificacion()</code></td><td>Id interno del detalle (<code>idInm</code>)</td></tr>
+              <tr><td><code>direccion()</code></td><td>Dirección o <code>null</code> si no está publicada</td></tr>
+              <tr><td><code>barrioId()</code> / <code>ciudadId()</code> / <code>departamentoId()</code> / <code>idZona()</code></td><td>Ids de ubicación, para armar consultas relacionadas</td></tr>
+              <tr><td><code>idLocalidad()</code> / <code>nlocalidad()</code></td><td>Localidad — disponible desde la versión 3.4.0</td></tr>
+              <tr><td><code>idTipoInmueble()</code> / <code>idGestion()</code> / <code>idSede()</code></td><td>Ids que alimentan los filtros del listado</td></tr>
+              <tr><td><code>fotos()</code></td><td>Array crudo: <code>[['foto' =&gt; 'https://…'], …]</code></td></tr>
+              <tr><td><code>fotos360()</code> / <code>video()</code></td><td>Recorridos 360 y URL de video normalizada (o <code>null</code>)</td></tr>
+              <tr><td><code>caracterisitcasInternas()</code></td><td><code>CaracteristicaInterna[]</code> — el nombre conserva la errata original</td></tr>
+              <tr><td><code>caracteristicasExternas()</code> / <code>caracteristicasAlrededores()</code></td><td>Arrays de características</td></tr>
+              <tr><td><code>caracteristicas()</code></td><td>Las tres listas anteriores unidas</td></tr>
+              <tr><td><code>caracteristicasPorColumnas(int $n = 3)</code></td><td>Características repartidas en <code>n</code> columnas, listas para maquetar</td></tr>
+              <tr><td><code>asesor()</code></td><td><code>AsesorDetalleInmueble</code> o <code>null</code></td></tr>
+              <tr><td><code>administracionIncluida()</code></td><td><code>bool</code> — campo <code>AdmonIncluida</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Características y asesores</h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre><span class="cm">// CaracteristicaInterna, CaracteristicaExterna y CaracteristicaAlrededores</span>
+<span class="cm">// comparten la misma forma:</span>
+$c-&gt;id();  $c-&gt;descripcion();  $c-&gt;cantidad();  $c-&gt;observacion();
+
+<span class="cm">// AsesorUsuario (listado) y AsesorDetalleInmueble (ficha):</span>
+$asesor-&gt;id();  $asesor-&gt;nombre();  $asesor-&gt;celular();
+$asesor-&gt;email();  $asesor-&gt;foto();
+$asesor-&gt;raw();   <span class="cm">// array crudo, por si necesitas un campo no mapeado</span></pre></div>
+
+        <h3>Maquetar la ficha completa</h3>
+        <div class="code"><div class="code-head"><span>ficha.php</span><button class="copy" type="button">copiar</button></div><pre>$detalle = $api-&gt;getDetalleInmueble($_GET[<span class="str">'codigo'</span>] ?? <span class="str">''</span>);
+
+if ($detalle === null) {
+    http_response_code(404);
+    exit;
+}
+
+<span class="cm">// fotoPortada() en el detalle asume que hay fotos: valida primero</span>
+$fotos   = $detalle-&gt;fotos() ?: [];
+$portada = $fotos ? $fotos[0][<span class="str">'foto'</span>] : <span class="str">'/img/placeholder.jpg'</span>;
+
+$columnas  = $detalle-&gt;caracteristicasPorColumnas(3);
+$similares = (new ObtenedorInmueblesSimilaresService($api))-&gt;obtener($detalle, 5);</pre></div>
+      </section>
+
+      <section id="servicios">
+        <h2 class="sec"><span class="num">09</span> Servicios y paginación</h2>
+        <p>La carpeta <code>Application/</code> trae casos de uso que ya resuelven problemas frecuentes de un portal inmobiliario.</p>
+
+        <h3><code>ObtenedorInmueblesSimilaresService</code></h3>
+        <p>Devuelve inmuebles parecidos a uno dado — misma zona, mismo tipo, misma gestión — descartando el original. Es el bloque «También te puede interesar» de la ficha.</p>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
+
+$servicio = new ObtenedorInmueblesSimilaresService($api);
+
+<span class="cm">// A partir del código (consulta el detalle internamente)</span>
+$similares = $servicio-&gt;obtenerConCodigo(<span class="str">'503-4848'</span>);
+
+<span class="cm">// O con el detalle ya cargado: evitas una petición extra</span>
+$similares = $servicio-&gt;obtener($detalle, 5);   <span class="cm">// devuelve hasta 4</span></pre></div>
+        <div class="note">
+          <span class="label">Pide uno más</span>
+          <p><code>obtener($detalle, $cantidad)</code> solicita <code>$cantidad</code> inmuebles al API y devuelve <strong><code>$cantidad - 1</code></strong>, porque reserva un espacio para descartar el inmueble original. Si quieres mostrar cuatro, pide cinco.</p>
+        </div>
+
+        <h3><code>ObtenedorUrlFichaInmuebleService</code></h3>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>$url = (new ObtenedorUrlFichaInmuebleService())-&gt;getUrl($inmueblePreview);
+<span class="cm">// https://simicrm.app/mcomercialweb/fichas_tecnicas/fichatec3.php?reg=503-4848</span></pre></div>
+
+        <h3>Paginación</h3>
+        <p><code>getInmuebles()</code> y <code>getInmueblesDestacados()</code> devuelven un <code>PaginadorInmueblePreview</code>; <code>getAsesores()</code> devuelve un <code>PaginadorAsesores</code>. <strong>Ambos son <code>null</code> cuando la petición no fue exitosa</strong>, así que verifícalos siempre antes de usarlos.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>PaginadorInmueblePreview</th><th>PaginadorAsesores</th><th>Devuelve</th></tr></thead>
+            <tbody>
+              <tr><td><code>paginaActual()</code></td><td><code>paginaActual()</code></td><td>Página actual</td></tr>
+              <tr><td><code>totalInmuebles()</code></td><td><code>total()</code></td><td>Total de registros del filtro</td></tr>
+              <tr><td><code>totalPorPagina()</code></td><td><code>totalPorPagina()</code></td><td>Registros por página</td></tr>
+              <tr><td><code>numeroPaginaInicio()</code> / <code>numeroPaginaFin()</code></td><td>Iguales</td><td>Rango de la página</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3><code>PaginatorHTML</code></h3>
+        <p>Genera el HTML de la paginación, con clases compatibles con Bootstrap, o te entrega las páginas como array si prefieres maquetarlo tú.</p>
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Application\Models\PaginatorHTML;
+
+$p = $resultado[<span class="str">'paginador'</span>];
+
+if ($p !== null &amp;&amp; $p-&gt;totalPorPagina() &gt; 0) {
+    $html = new PaginatorHTML(
+        $p-&gt;totalInmuebles(),               <span class="cm">// total de registros</span>
+        $p-&gt;totalPorPagina(),               <span class="cm">// registros por página</span>
+        $p-&gt;paginaActual(),                 <span class="cm">// página actual</span>
+        <span class="str">'/inmuebles?page=__PAGENUMBER__'</span>    <span class="cm">// patrón de URL</span>
+    );
+    $html-&gt;setMaxPagesToShow(7);
+
+    echo $html-&gt;toHtml();
+
+    <span class="cm">// o maquetas tú:</span>
+    foreach ($html-&gt;getPages() as $page) {
+        <span class="cm">// ['num' =&gt; 3, 'url' =&gt; '/inmuebles?page=3', 'isCurrent' =&gt; false]</span>
+    }
+}</pre></div>
+      </section>
+
+      <section id="frameworks">
+        <h2 class="sec"><span class="num">10</span> Laravel y WordPress</h2>
+
+        <h3>Laravel</h3>
+        <p>Registra la abstracción en el contenedor una sola vez y luego inyéctala donde la necesites.</p>
+        <div class="code"><div class="code-head"><span>app/Providers/SimiServiceProvider.php</span><button class="copy" type="button">copiar</button></div><pre>&lt;?php
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+
+class SimiServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this-&gt;app-&gt;singleton(ApiFachadaRepository::class, function () {
+            return new ApiFachada((string) config(<span class="str">'simi.token'</span>));
+        });
+    }
+}</pre></div>
+        <div class="code"><div class="code-head"><span>app/Http/Controllers/InmuebleController.php</span><button class="copy" type="button">copiar</button></div><pre>public function __construct(private ApiFachadaRepository $simi) {}
+
+public function index(Request $request)
+{
+    $filtros = array_filter($request-&gt;only([
+        <span class="str">'ciudad'</span>, <span class="str">'barrio'</span>, <span class="str">'tipoInm'</span>, <span class="str">'tipOper'</span>, <span class="str">'valmin'</span>, <span class="str">'valmax'</span>, <span class="str">'alcobas'</span>,
+    ]));
+    $filtros[<span class="str">'total'</span>]  = 12;
+    $filtros[<span class="str">'limite'</span>] = max(1, (int) $request-&gt;query(<span class="str">'page'</span>, 1));
+
+    $resultado = cache()-&gt;remember(
+        <span class="str">'simi:inmuebles:'</span> . md5(serialize($filtros)),
+        now()-&gt;addMinutes(10),
+        fn () =&gt; $this-&gt;simi-&gt;getInmuebles($filtros)
+    );
+
+    return view(<span class="str">'inmuebles.index'</span>, $resultado);
+}
+
+public function show(string $codigo)
+{
+    $detalle = $this-&gt;simi-&gt;getDetalleInmueble($codigo);
+    abort_if($detalle === null, 404);
+
+    return view(<span class="str">'inmuebles.show'</span>, [<span class="str">'inmueble'</span> =&gt; $detalle]);
+}</pre></div>
+        <div class="note">
+          <span class="label">Por qué no ApiServiceProvider::build()</span>
+          <p>Dentro de un contenedor conviene instanciar <code>ApiFachada</code> directamente para no depender del singleton estático del SDK (ver advertencia 1). Si quieres conservar la validación del formato del token, llama a <code>setTokenProvider()</code> una única vez en el <code>register()</code>.</p>
+        </div>
+
+        <h3>WordPress</h3>
+        <p>Un shortcode <code>[simi_destacados total="6"]</code> con caché por <em>transient</em>:</p>
+        <div class="code"><div class="code-head"><span>simi-inmuebles.php</span><button class="copy" type="button">copiar</button></div><pre>require_once __DIR__ . <span class="str">'/vendor/autoload.php'</span>;
+
+use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+
+function simi_api() {
+    static $api = null;
+    if ($api === null) {
+        $api = new ApiFachada(SIMI_TOKEN);   <span class="cm">// definido en wp-config.php</span>
+    }
+    return $api;
+}
+
+function simi_destacados_shortcode($atts) {
+    $atts = shortcode_atts([<span class="str">'total'</span> =&gt; 6], $atts);
+    $key  = <span class="str">'simi_destacados_'</span> . (int) $atts[<span class="str">'total'</span>];
+
+    $inmuebles = get_transient($key);
+    if ($inmuebles === false) {
+        try {
+            $inmuebles = simi_api()
+                -&gt;getInmueblesDestacados([<span class="str">'total'</span> =&gt; (int) $atts[<span class="str">'total'</span>]])[<span class="str">'inmuebles'</span>];
+        } catch (\Exception $e) {
+            error_log(<span class="str">'[SIMI] '</span> . $e-&gt;getMessage());
+            return <span class="str">''</span>;
+        }
+        set_transient($key, $inmuebles, 15 * MINUTE_IN_SECONDS);
+    }
+
+    ob_start(); ?&gt;
+    &lt;div class="simi-grid"&gt;
+      &lt;?php foreach ($inmuebles as $i): ?&gt;
+        &lt;article class="simi-card"&gt;
+          &lt;img src="&lt;?php echo esc_url($i-&gt;fotoPortada()); ?&gt;" loading="lazy" alt=""&gt;
+          &lt;h3&gt;&lt;?php echo esc_html($i-&gt;nombre()); ?&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;?php echo $i-&gt;enArriendo()
+                ? <span class="str">'$ '</span> . esc_html($i-&gt;valorArriendo()) . <span class="str">' /mes'</span>
+                : <span class="str">'$ '</span> . esc_html($i-&gt;valorVenta()); ?&gt;&lt;/p&gt;
+        &lt;/article&gt;
+      &lt;?php endforeach; ?&gt;
+    &lt;/div&gt;
+    &lt;?php
+    return ob_get_clean();
+}
+add_shortcode(<span class="str">'simi_destacados'</span>, <span class="str">'simi_destacados_shortcode'</span>);</pre></div>
+        <p>Guarda el token en <code>wp-config.php</code> con <code>define('SIMI_TOKEN', '…')</code>, nunca en la base de datos ni en el tema.</p>
+      </section>
+
+      <section id="cache">
+        <h2 class="sec"><span class="num">11</span> Rendimiento y caché</h2>
+        <p>El API de SIMI es la parte lenta de cualquier página que lo consuma, y el SDK no define <em>timeouts</em> de cURL. <strong>Cachea siempre.</strong></p>
+        <p>Como los servicios del SDK dependen de la abstracción <code>ApiFachadaRepository</code>, puedes envolver la fachada real en un decorador con caché sin cambiar nada más de tu código.</p>
+
+        <div class="code"><div class="code-head"><span>ApiSimiConCache.php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+
+class ApiSimiConCache extends ApiFachadaRepository
+{
+    public function __construct(
+        private ApiFachadaRepository $inner,
+        private \Psr\SimpleCache\CacheInterface $cache
+    ) {
+        parent::__construct($inner-&gt;getToken());
+    }
+
+    private function recordar(string $clave, callable $fn, int $ttl)
+    {
+        $clave = <span class="str">'simi.'</span> . md5($clave);
+        $hit   = $this-&gt;cache-&gt;get($clave);
+        if ($hit !== null) {
+            return $hit;
+        }
+        $valor = $fn();
+        $this-&gt;cache-&gt;set($clave, $valor, $ttl);
+        return $valor;
+    }
+
+    public function getInmuebles(array $filters = [])
+    {
+        return $this-&gt;recordar(<span class="str">'inmuebles'</span> . serialize($filters),
+            fn () =&gt; $this-&gt;inner-&gt;getInmuebles($filters), 600);
+    }
+
+    public function getDetalleInmueble($codigo)
+    {
+        return $this-&gt;recordar(<span class="str">'detalle'</span> . $codigo,
+            fn () =&gt; $this-&gt;inner-&gt;getDetalleInmueble($codigo), 1800);
+    }
+
+    <span class="cm">// … el resto de métodos abstractos, delegando igual</span>
+}</pre></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Dato</th><th>TTL sugerido</th><th>Por qué</th></tr></thead>
+            <tbody>
+              <tr><td>Departamentos, ciudades, barrios, gestiones</td><td class="num-col">12–24 h</td><td>El catálogo geográfico casi no cambia</td></tr>
+              <tr><td>Tipos de inmueble</td><td class="num-col">12 h</td><td>Incluye conteos de inventario</td></tr>
+              <tr><td>Listados y destacados</td><td class="num-col">5–15 min</td><td>El inventario se mueve a diario</td></tr>
+              <tr><td>Ficha de detalle</td><td class="num-col">10–30 min</td><td>Es la página con más tráfico</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note tip">
+          <span class="label">El decorador es transparente</span>
+          <p>Como <code>ObtenedorInmueblesSimilaresService</code> recibe un <code>ApiFachadaRepository</code>, funciona idéntico con la fachada real o con la versión cacheada. Ese es el beneficio concreto de tipar contra la abstracción.</p>
+        </div>
+      </section>
+
+      <section id="errores">
+        <h2 class="sec"><span class="num">12</span> Manejo de errores</h2>
+        <p>El SDK usa dos mecanismos distintos, y conviene tener claro cuál aplica en cada caso.</p>
+
+        <h3>Excepciones: errores de configuración o de código</h3>
+        <p>Se lanzan <strong>antes</strong> de salir a la red.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mensaje</th><th>Causa</th></tr></thead>
+            <tbody>
+              <tr><td><code>El token es invalido</code></td><td>El token no cumple el patrón de la sección 3</td></tr>
+              <tr><td><code>No a seteado el Proveedor del token…</code></td><td>Llamaste a <code>getAPi()</code> sin <code>setTokenProvider()</code></td></tr>
+              <tr><td><code>Filtro (x) no esta permitido en APISIMI</code></td><td>Filtro fuera de la lista blanca</td></tr>
+              <tr><td><code>El codigo del inmueble es requerido…</code></td><td><code>getDetalleInmueble('')</code></td></tr>
+              <tr><td><code>El id del departemento es necesario…</code></td><td><code>getCiudades(null)</code></td></tr>
+              <tr><td><code>El id de la ciudad es necesaria…</code></td><td><code>getBarrios(null)</code></td></tr>
+              <tr><td><code>Url Invalida</code></td><td>La URL construida no pasó <code>FILTER_VALIDATE_URL</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Respuestas vacías: fallos del API</h3>
+        <p>Si el API responde con error, no responde, o devuelve un cuerpo inesperado, <strong>no hay excepción</strong>: recibes listas vacías o <code>null</code>. Un listado vacío puede significar «sin resultados» o «el API está caído», y desde tu código se ven igual.</p>
+        <div class="code"><div class="code-head"><span>patrón recomendado</span><button class="copy" type="button">copiar</button></div><pre>try {
+    $resultado = $api-&gt;getInmuebles($filtros);
+} catch (\Exception $e) {
+    error_log(<span class="str">'[SIMI] '</span> . $e-&gt;getMessage());
+    $resultado = [<span class="str">'inmuebles'</span> =&gt; [], <span class="str">'paginador'</span> =&gt; null];
+}
+
+if (empty($resultado[<span class="str">'inmuebles'</span>])) {
+    <span class="cm">// muestra un estado vacío, no un error técnico</span>
+}</pre></div>
+      </section>
+
+      <section id="advertencias">
+        <h2 class="sec"><span class="num">13</span> Advertencias del SDK</h2>
+        <p>Particularidades reales del código fuente. Conocerlas ahorra horas de depuración.</p>
+
+        <ol class="gotchas">
+          <li>
+            <strong><code>build()</code> es un singleton compartido entre proveedores.</strong> La instancia se guarda en una propiedad estática de la clase padre, así que si en el mismo proceso llamas primero a <code>ApiServiceProvider::build()</code> y luego a <code>ApiModelRepositoryServiceProvider::build()</code>, la segunda llamada devuelve la <em>primera</em> instancia. Si necesitas ambas variantes, instancia las fachadas directamente.
+            <div class="code"><pre>$api      = new ApiFachada($token);
+$apiModel = new ApiModelRepositoryFachada($token);</pre></div>
+          </li>
+          <li><strong>Los filtros con valor <code>0</code> se descartan.</strong> <code>getInmuebles()</code> filtra con <code>!empty($value)</code>: <code>['garajes' =&gt; 0]</code> nunca llega al API.</li>
+          <li><strong><code>idTipoInmueble()</code> es <code>protected</code> en <code>InmueblePreview</code>.</strong> Solo es público en <code>InmuebleDetail</code>; llamarlo sobre un preview desde fuera de la clase produce un <code>Error</code> de PHP.</li>
+          <li><strong><code>fotoPortada()</code> del detalle asume que hay fotos.</strong> Accede a <code>fotos()[0]["foto"]</code> sin validar. Comprueba el array antes de usarlo.</li>
+          <li><strong><code>Domain\ModelRepository\Inmueble::valorArriendo()</code> devuelve el valor de venta.</strong> Es un defecto conocido de esa clase auxiliar: usa <code>valorArriendo()</code> de <code>InmueblePreview</code> o <code>InmuebleDetail</code>.</li>
+          <li><strong><code>caracterisitcasInternas()</code> está escrito con errata</strong> — <code>caracterisitcas</code>, no <code>caracteristicas</code>. Se mantiene así por compatibilidad hacia atrás.</li>
+          <li><strong>La URL base por defecto es HTTP, no HTTPS</strong> (<code>http://simi-api.com/ApiSimiweb/response/</code>). Solo <code>getEstadoInmueble()</code> usa <code>https://api.simicrm.app/crm/</code>.</li>
+          <li><strong>cURL no define timeouts.</strong> Una caída del API puede colgar tu petición: envuelve las llamadas en tu propia capa con caché, o resuélvelas en segundo plano.</li>
+          <li><strong><code>getEstadoInmueble()</code> habla con otro API y otra versión.</strong> Que funcionen los demás métodos no garantiza que este también.</li>
+          <li><strong>Los métodos de catálogo no verifican <code>isSuccess()</code> antes de iterar.</strong> <code>getDepartamentos()</code> recorre la respuesta directamente; si el API falla puede propagarse un aviso de PHP. Envuélvelos en <code>try/catch</code> en producción.</li>
+        </ol>
+      </section>
+
+      <section id="pruebas">
+        <h2 class="sec"><span class="num">14</span> Pruebas y soporte</h2>
+
+        <h3>Ejecutar las pruebas del repositorio</h3>
+        <p>Las pruebas incluidas golpean el <strong>API real</strong>, así que necesitan un token válido.</p>
+        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>composer install
+cp tests/testing.env.php.example tests/testing.env.php
+<span class="cm"># edita el archivo y pon tu token en "token-simi"</span>
+vendor/bin/phpunit</pre></div>
+        <p><code>tests/testing.env.php</code> está en <code>.gitignore</code>: no subas tu token al repositorio.</p>
+
+        <h3>Probar tu código sin red</h3>
+        <p>Extiende la abstracción y devuelve datos fijos. Tus servicios y controladores no notan la diferencia.</p>
+        <div class="code"><div class="code-head"><span>ApiSimiFake.php</span><button class="copy" type="button">copiar</button></div><pre>class ApiSimiFake extends ApiFachadaRepository
+{
+    public function getInmuebles(array $filters = [])
+    {
+        return [
+            <span class="str">'inmuebles'</span> =&gt; [new InmueblePreview([
+                <span class="str">'Codigo_Inmueble'</span> =&gt; <span class="str">'503-1'</span>,
+                <span class="str">'Tipo_Inmueble'</span>   =&gt; <span class="str">'APARTAMENTO'</span>,
+                <span class="str">'Barrio'</span>          =&gt; <span class="str">'LAURELES'</span>,
+                <span class="str">'Ciudad'</span>          =&gt; <span class="str">'MEDELLIN'</span>,
+                <span class="str">'Venta'</span>           =&gt; <span class="str">'$ 350.000.000'</span>,
+            ])],
+            <span class="str">'paginador'</span> =&gt; null,
+        ];
+    }
+
+    <span class="cm">// … el resto de métodos abstractos devolviendo arrays vacíos</span>
+}</pre></div>
+
+        <h3>Ejemplos ejecutables</h3>
+        <p>El repositorio incluye una carpeta <code>examples/</code> con ocho archivos que puedes correr desde la terminal: listado con paginación, ficha de detalle, catálogos para el buscador, destacados y asesores, inmuebles similares, exportación a CSV y el decorador con caché.</p>
+        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>export SIMI_TOKEN=<span class="str">"tu-token-503"</span>
+
+php examples/01-listado-inmuebles.php
+php examples/02-detalle-inmueble.php 503-4848
+php examples/06-exportar-inventario-csv.php &gt; inventario.csv</pre></div>
+
+        <h3>Versionado y contribución</h3>
+        <p>El proyecto sigue <em>Semantic Versioning</em> y registra los cambios en <code>CHANGELOG.md</code> con el formato <em>Keep a Changelog</em>. Fija la versión en tu <code>composer.json</code> y revisa el changelog antes de subir de versión menor.</p>
+        <p>Si agregas un endpoint, sigue el patrón existente: una clase en <code>Requests/</code>, otra en <code>Responses/</code>, su modelo en <code>Modelos/</code>, y expón el método en <code>ApiFachada</code> <strong>y</strong> en <code>ApiFachadaRepository</code>.</p>
+
+        <h3>Dónde pedir ayuda</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Recurso</th><th>Enlace</th></tr></thead>
+            <tbody>
+              <tr><td>Sitio principal</td><td><a href="https://homlity.com/" target="_blank" rel="noopener">homlity.com</a></td></tr>
+              <tr><td>Portal de desarrolladores</td><td><a href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">homlity.com/desarrolladores</a></td></tr>
+              <tr><td>Repositorio</td><td><a href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">github.com/homlity/sdk-simi</a></td></tr>
+              <tr><td>Reportar un problema</td><td><a href="https://github.com/homlity/sdk-simi/issues" target="_blank" rel="noopener">github.com/homlity/sdk-simi/issues</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="shell">
+    <p>SDK SIMI para PHP · documentación para desarrolladores de <a href="https://homlity.com/" target="_blank" rel="noopener">Homlity</a>.</p>
+    <div class="masthead-links">
+      <a class="pill" href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">Portal de desarrolladores</a>
+      <a class="pill" href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var pre = btn.closest('.code').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(function () {
+      var previo = btn.textContent;
+      btn.textContent = 'copiado';
+      setTimeout(function () { btn.textContent = previo; }, 1400);
+    }).catch(function () {
+      btn.textContent = 'no se pudo copiar';
+      setTimeout(function () { btn.textContent = 'copiar'; }, 1800);
+    });
+  });
+});
+
+var enlaces = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+var secciones = enlaces.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+if ('IntersectionObserver' in window) {
+  var observador = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (entrada) {
+      if (!entrada.isIntersecting) return;
+      var i = secciones.indexOf(entrada.target);
+      if (i < 0) return;
+      enlaces.forEach(function (a) { a.classList.remove('is-active'); });
+      enlaces[i].classList.add('is-active');
+    });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+
+  secciones.forEach(function (s) { if (s) observador.observe(s); });
+}
+</script>
