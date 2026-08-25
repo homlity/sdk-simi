@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\ModelRepository;
+namespace Homlity\SIMI\SDK\Domain\ModelRepository;
 
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 
 /**
  * Class Inmueble
- * @package Codwelt\SIMI\SDK\Domain\ModelRepository
+ * @package Homlity\SIMI\SDK\Domain\ModelRepository
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class Inmueble

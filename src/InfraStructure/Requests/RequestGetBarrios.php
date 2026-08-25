@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
+namespace Homlity\SIMI\SDK\InfraStructure\Requests;
 
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseFiltroInmueble;
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseGetBarrios;
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseFiltroInmueble;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseGetBarrios;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
 
 /**
  * Class RequestGetBarrios
- * @package Codwelt\SIMI\SDK\InfraStructure\Requests
+ * @package Homlity\SIMI\SDK\InfraStructure\Requests
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class RequestGetBarrios extends HttpClient

@@ -101,11 +101,47 @@ Con el SDK obtienes:
 ### Vía Composer (recomendado)
 
 ```bash
-composer require codwelt/sdk-simi
+composer require homlity/sdk-simi
 ```
 
-> El nombre del paquete en `composer.json` es **`codwelt/sdk-simi`** y el repositorio es
+> El nombre del paquete en `composer.json` es **`homlity/sdk-simi`** y el repositorio es
 > **[github.com/homlity/sdk-simi](https://github.com/homlity/sdk-simi)**.
+
+### Migración desde `codwelt/sdk-simi`
+
+El paquete se publicaba antes bajo el vendor `codwelt`. **El vendor y el namespace ahora son `homlity`**,
+y ese es un cambio incompatible hacia atrás: todo el código que use el SDK debe actualizar sus
+importaciones.
+
+```diff
+-composer require codwelt/sdk-simi
++composer require homlity/sdk-simi
+```
+
+```diff
+-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
++use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
++use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
+```
+
+Un solo comando actualiza todas las referencias de tu proyecto:
+
+```bash
+grep -rl 'Codwelt\\SIMI\\SDK' app/ config/ resources/ \
+  | xargs sed -i '' 's/Codwelt\\SIMI\\SDK/Homlity\\SIMI\\SDK/g'   # macOS
+```
+
+```bash
+grep -rl 'Codwelt\\SIMI\\SDK' app/ config/ resources/ \
+  | xargs sed -i 's/Codwelt\\SIMI\\SDK/Homlity\\SIMI\\SDK/g'      # Linux
+```
+
+Después ejecuta `composer dump-autoload`. Ninguna clase, método ni firma cambió: **solo el namespace**.
+
+> **Nota sobre versiones.** Cambiar el namespace rompe la compatibilidad, así que corresponde una
+> versión mayor: **`v3.0.0`**. Publica ese tag antes de usar la restricción `^3.0`; mientras no exista,
+> apunta a `dev-master`.
 
 ### Vía repositorio VCS
 
@@ -121,19 +157,19 @@ desarrollo o un Packagist privado), agrégalo como repositorio VCS en el `compos
     }
   ],
   "require": {
-    "codwelt/sdk-simi": "^2.5"
+    "homlity/sdk-simi": "^3.0"
   }
 }
 ```
 
 ```bash
-composer update codwelt/sdk-simi
+composer update homlity/sdk-simi
 ```
 
 Para fijar una versión exacta usa cualquiera de los tags publicados (`v2.5.7`, `v2.5.6`, …):
 
 ```json
-"codwelt/sdk-simi": "v2.5.7"
+"homlity/sdk-simi": "v2.5.7"
 ```
 
 ### Autoload
@@ -141,7 +177,7 @@ Para fijar una versión exacta usa cualquiera de los tags publicados (`v2.5.7`, 
 El paquete usa PSR-4:
 
 ```
-Codwelt\SIMI\SDK\  →  src/
+Homlity\SIMI\SDK\  →  src/
 ```
 
 Basta con incluir el autoloader de Composer:
@@ -202,7 +238,7 @@ El SDK nunca recibe el token "a mano": recibe un objeto que sabe de dónde sacar
 ```php
 <?php
 
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+use Homlity\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
 
 class TokenSimiProvider implements TokenServiceProviderRespository
 {
@@ -220,7 +256,7 @@ class TokenSimiProvider implements TokenServiceProviderRespository
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
 
 $provider = ApiServiceProvider::build();
 $provider->setTokenProvider(new TokenSimiProvider());   // valida el token aquí
@@ -231,7 +267,7 @@ $api = $provider->getAPi();                             // instancia de ApiFacha
 > **Atajo**: si no necesitas el proveedor puedes instanciar la fachada directamente.
 > Ojo: esta vía **no valida** el formato del token.
 > ```php
-> $api = new \Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada(getenv('SIMI_TOKEN'));
+> $api = new \Homlity\SIMI\SDK\InfraStructure\API\ApiFachada(getenv('SIMI_TOKEN'));
 > ```
 
 ### Paso 3 — Consulta inmuebles
@@ -244,9 +280,9 @@ $resultado = $api->getInmuebles([
     'limite' => 1,    // página
 ]);
 
-/** @var \Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview[] $inmuebles */
+/** @var \Homlity\SIMI\SDK\InfraStructure\Modelos\InmueblePreview[] $inmuebles */
 $inmuebles = $resultado['inmuebles'];
-/** @var \Codwelt\SIMI\SDK\InfraStructure\Modelos\PaginadorInmueblePreview|null $paginador */
+/** @var \Homlity\SIMI\SDK\InfraStructure\Modelos\PaginadorInmueblePreview|null $paginador */
 $paginador = $resultado['paginador'];
 
 foreach ($inmuebles as $inmueble) {
@@ -582,7 +618,7 @@ Devuelve inmuebles parecidos a uno dado (misma zona, mismo tipo, misma gestión)
 Perfecto para el bloque "También te puede interesar" de la ficha.
 
 ```php
-use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
+use Homlity\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
 
 $servicio = new ObtenedorInmueblesSimilaresService($api);
 
@@ -601,7 +637,7 @@ $similares = $servicio->obtener($detalle, 5);               // hasta 4 resultado
 Construye la URL de la ficha técnica en SIMI para un inmueble.
 
 ```php
-use Codwelt\SIMI\SDK\Application\ObtenedorUrlFichaInmuebleService;
+use Homlity\SIMI\SDK\Application\ObtenedorUrlFichaInmuebleService;
 
 $url = (new ObtenedorUrlFichaInmuebleService())->getUrl($inmueblePreview);
 // https://simicrm.app/mcomercialweb/fichas_tecnicas/fichatec3.php?reg=503-4848
@@ -612,7 +648,7 @@ $url = (new ObtenedorUrlFichaInmuebleService())->getUrl($inmueblePreview);
 Paginador de propósito general que genera el HTML de la paginación (compatible con las clases de Bootstrap).
 
 ```php
-use Codwelt\SIMI\SDK\Application\Models\PaginatorHTML;
+use Homlity\SIMI\SDK\Application\Models\PaginatorHTML;
 
 $paginador = $resultado['paginador'];
 
@@ -841,7 +877,7 @@ SIMI_TOKEN=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0-503
 <?php
 namespace App\Services\Simi;
 
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+use Homlity\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
 
 class TokenSimiProvider implements TokenServiceProviderRespository
 {
@@ -862,8 +898,8 @@ namespace App\Providers;
 
 use App\Services\Simi\TokenSimiProvider;
 use Illuminate\Support\ServiceProvider;
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
 
 class SimiServiceProvider extends ServiceProvider
 {
@@ -886,7 +922,7 @@ class SimiServiceProvider extends ServiceProvider
 <?php
 namespace App\Http\Controllers;
 
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
 use Illuminate\Http\Request;
 
 class InmuebleController extends Controller
@@ -935,7 +971,7 @@ Un shortcode `[simi_destacados total="6"]` para mostrar inventario en cualquier 
 // wp-content/plugins/simi-inmuebles/simi-inmuebles.php
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
 
 function simi_api() {
     static $api = null;
@@ -1001,7 +1037,7 @@ con caché y seguir usando todo el resto del SDK sin cambios:
 ```php
 <?php
 
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
 
 class ApiSimiCacheado extends ApiFachadaRepository
 {
@@ -1115,8 +1151,8 @@ Si en el mismo proceso llamas primero a `ApiServiceProvider::build()` y luego a
 `ApiModelRepositoryServiceProvider::build()`, la segunda llamada devuelve la **primera** instancia.
 → Si necesitas ambas variantes, instancia las fachadas directamente:
 ```php
-$api      = new \Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada($token);
-$apiModel = new \Codwelt\SIMI\SDK\Domain\API\ApiModelRepositoryFachada($token);
+$api      = new \Homlity\SIMI\SDK\InfraStructure\API\ApiFachada($token);
+$apiModel = new \Homlity\SIMI\SDK\Domain\API\ApiModelRepositoryFachada($token);
 ```
 
 **2. Filtros con valor `0` se descartan.** `getInmuebles()` filtra con `!empty($value)`, así que
@@ -1186,8 +1222,8 @@ vendor/bin/phpunit --filter test_inmueble_detalle_metodos
 Extiende la abstracción y devuelve datos fijos:
 
 ```php
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 
 class ApiSimiFake extends ApiFachadaRepository
 {
@@ -1226,7 +1262,7 @@ class ApiSimiFake extends ApiFachadaRepository
 - El proyecto sigue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Los cambios se registran en [`CHANGELOG.md`](CHANGELOG.md) siguiendo
   [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
-- Fija la versión en tu `composer.json` (`"codwelt/sdk-simi": "^2.5"`) y revisa el changelog antes de subir
+- Fija la versión en tu `composer.json` (`"homlity/sdk-simi": "^3.0"`) y revisa el changelog antes de subir
   de versión menor.
 
 ### Para contribuir

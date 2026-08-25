@@ -11,8 +11,8 @@
 
 require __DIR__ . '/00-bootstrap.php';
 
-use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
 
 class ApiSimiConCache extends ApiFachadaRepository
 {

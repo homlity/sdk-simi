@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Tests\Application;
+namespace Homlity\SIMI\SDK\Tests\Application;
 
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+use Homlity\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
 
 /**
  * Class TokenServiceTestProvider
- * @package Codwelt\SIMI\SDK\Tests\Application
+ * @package Homlity\SIMI\SDK\Tests\Application
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class TokenServiceTestProvider implements TokenServiceProviderRespository

@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Tests\Application;
+namespace Homlity\SIMI\SDK\Tests\Application;
 
-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
-use Codwelt\SIMI\SDK\Tests\TestCase;
+use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
+use Homlity\SIMI\SDK\Tests\TestCase;
 
 /**
  * Class InmuebleTest
- * @package Codwelt\SIMI\SDK\Tests\Application
+ * @package Homlity\SIMI\SDK\Tests\Application
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class InmuebleTest extends TestCase

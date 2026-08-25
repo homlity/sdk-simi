@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
+namespace Homlity\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class Barrio
- * @package Codwelt\SIMI\SDK\Domain\Modelos
+ * @package Homlity\SIMI\SDK\Domain\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class Barrio implements \JsonSerializable

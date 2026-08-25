@@ -1,11 +1,11 @@
 <?php
-namespace Codwelt\SIMI\SDK\Domain\Providers;
+namespace Homlity\SIMI\SDK\Domain\Providers;
 
-use Codwelt\SIMI\SDK\Domain\API\ApiModelRepositoryFachada;
+use Homlity\SIMI\SDK\Domain\API\ApiModelRepositoryFachada;
 
 /**
  * Class ApiModelRepositoryServiceProvider
- * @package Codwelt\SIMI\SDK\Domain\Providers
+ * @package Homlity\SIMI\SDK\Domain\Providers
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ApiModelRepositoryServiceProvider extends ApiServiceProviderRepository

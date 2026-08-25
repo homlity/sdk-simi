@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
+namespace Homlity\SIMI\SDK\InfraStructure\Requests;
 
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
 
 /**
  * Class HttpClient
- * @package Codwelt\SIMI\SDK\InfraStructure\Requests
+ * @package Homlity\SIMI\SDK\InfraStructure\Requests
  * @author Juan Diaz <iam@furiosojack.com>
  */
 abstract class HttpClient

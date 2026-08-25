@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Tests\InsfraStructure;
+namespace Homlity\SIMI\SDK\Tests\InsfraStructure;
 
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
-use Codwelt\SIMI\SDK\Tests\TestCase;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\Tests\TestCase;
 
 /**
  * Class ApiFachadaTets
- * @package Codwelt\SIMI\SDK\Tests\InsfraStructure
+ * @package Homlity\SIMI\SDK\Tests\InsfraStructure
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ApiFachadaTest extends TestCase

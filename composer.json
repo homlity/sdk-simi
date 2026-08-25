@@ -1,5 +1,5 @@
 {
-    "name": "codwelt/sdk-simi",
+    "name": "homlity/sdk-simi",
     "description": "Sdk del api de simi",
     "authors": [
         {
@@ -9,12 +9,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Codwelt\\SIMI\\SDK\\":  "src/"
+            "Homlity\\SIMI\\SDK\\":  "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Codwelt\\SIMI\\SDK\\Tests\\": "tests/"
+            "Homlity\\SIMI\\SDK\\Tests\\": "tests/"
         }
     },
 

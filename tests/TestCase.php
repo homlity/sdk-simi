@@ -1,9 +1,9 @@
 <?php
-namespace Codwelt\SIMI\SDK\Tests;
+namespace Homlity\SIMI\SDK\Tests;
 use PHPUnit\Framework\TestCase as Father;
 /**
  * Class TestCase
- * @package Codwelt\SIMI\SDK\Tests
+ * @package Homlity\SIMI\SDK\Tests
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class TestCase extends Father

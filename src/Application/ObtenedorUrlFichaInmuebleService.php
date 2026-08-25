@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Application;
+namespace Homlity\SIMI\SDK\Application;
 
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmueblePreview;
 
 /**
  * Class ObtenedorUrlFichaInmuebleService
- * @package Codwelt\SIMI\SDK\Application
+ * @package Homlity\SIMI\SDK\Application
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ObtenedorUrlFichaInmuebleService

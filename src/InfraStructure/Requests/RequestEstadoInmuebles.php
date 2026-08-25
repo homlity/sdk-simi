@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Requests;
+namespace Homlity\SIMI\SDK\InfraStructure\Requests;
 
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseEstadoInmuebles;
-use Codwelt\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseEstadoInmuebles;
+use Homlity\SIMI\SDK\InfraStructure\Responses\ResponseRepository;
 
 /**
  * Class RequestEstadoInmueble
- * @package Codwelt\SIMI\SDK\InfraStructure\Requests
+ * @package Homlity\SIMI\SDK\InfraStructure\Requests
  * @author Don Juanc.Developer Instagram <@donjuanc.developer>
  */
 class RequestEstadoInmuebles extends HttpClient

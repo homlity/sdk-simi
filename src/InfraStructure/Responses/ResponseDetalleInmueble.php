@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
+namespace Homlity\SIMI\SDK\InfraStructure\Responses;
 
 /**
  * Class ResponseDetalleInmueble
- * @package Codwelt\SIMI\SDK\InfraStructure\Responses
+ * @package Homlity\SIMI\SDK\InfraStructure\Responses
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ResponseDetalleInmueble extends ResponseRepository

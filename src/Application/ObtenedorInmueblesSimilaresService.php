@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Application;
+namespace Homlity\SIMI\SDK\Application;
 
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
-use Codwelt\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
-use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\InfraStructure\Modelos\InmuebleDetail;
+use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+use Homlity\SIMI\SDK\InfraStructure\Requests\RequestDetalleInmueble;
 
 /**
  * Class ObtenedorInmueblesSimilaresService
- * @package Codwelt\SIMI\SDK\Application
+ * @package Homlity\SIMI\SDK\Application
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ObtenedorInmueblesSimilaresService

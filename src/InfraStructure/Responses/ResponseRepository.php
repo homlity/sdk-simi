@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Responses;
+namespace Homlity\SIMI\SDK\InfraStructure\Responses;
 
 /**
  * Clase abstracta de la que tiene que extender todos los responses
  * Class ResponseRepository
- * @package Codwelt\SIMI\SDK\InfraStructure\Responses
+ * @package Homlity\SIMI\SDK\InfraStructure\Responses
  * @author Juan Diaz <iam@furiosojack.com>
  */
 abstract class ResponseRepository

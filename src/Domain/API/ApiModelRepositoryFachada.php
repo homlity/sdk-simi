@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\API;
+namespace Homlity\SIMI\SDK\Domain\API;
 
-use Codwelt\SIMI\SDK\Domain\ModelRepository\Inmueble;
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\Domain\ModelRepository\Inmueble;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
 
 /**
  * Class ApiModelRepositoryFachada
- * @package Codwelt\SIMI\SDK\Domain\API
+ * @package Homlity\SIMI\SDK\Domain\API
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class ApiModelRepositoryFachada extends ApiFachada

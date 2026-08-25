@@ -1,9 +1,9 @@
 <?php
-namespace Codwelt\SIMI\SDK\InfraStructure\Modelos\Repository;
+namespace Homlity\SIMI\SDK\InfraStructure\Modelos\Repository;
 
 /**
  * Class AsesorRepository
- * @package Codwelt\SIMI\SDK\InfraStructure\Modelos\Repository
+ * @package Homlity\SIMI\SDK\InfraStructure\Modelos\Repository
  * @author Juan Diaz <iam@furiosojack.com>
  */
 abstract class AsesorRepository

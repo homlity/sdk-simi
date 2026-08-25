@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Helpers;
+namespace Homlity\SIMI\SDK\Helpers;
 
 /**
  * Class Str
- * @package Codwelt\SIMI\SDK\Helpers
+ * @package Homlity\SIMI\SDK\Helpers
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class Str

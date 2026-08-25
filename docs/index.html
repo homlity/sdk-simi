@@ -270,7 +270,7 @@ footer p{margin:0;color:var(--text-faint);font-size:14px}
         <a class="pill is-primary" href="https://homlity.com/desarrolladores/" target="_blank" rel="noopener">Portal de desarrolladores</a>
         <a class="pill" href="https://homlity.com/" target="_blank" rel="noopener">homlity.com</a>
         <a class="pill" href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">GitHub</a>
-        <span class="pill">composer require codwelt/sdk-simi</span>
+        <span class="pill">composer require homlity/sdk-simi</span>
       </div>
     </div>
   </div>
@@ -369,8 +369,25 @@ footer p{margin:0;color:var(--text-faint);font-size:14px}
         </div>
 
         <h3>Instalar con Composer</h3>
-        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>composer require codwelt/sdk-simi</pre></div>
-        <p>El nombre del paquete es <code>codwelt/sdk-simi</code> y el repositorio es <a href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">github.com/homlity/sdk-simi</a>.</p>
+        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>composer require homlity/sdk-simi</pre></div>
+        <p>El nombre del paquete es <code>homlity/sdk-simi</code> y el repositorio es <a href="https://github.com/homlity/sdk-simi" target="_blank" rel="noopener">github.com/homlity/sdk-simi</a>.</p>
+
+        <h3>Migración desde <code>codwelt/sdk-simi</code></h3>
+        <p>El paquete se publicaba antes bajo el vendor <code>codwelt</code>. <strong>El vendor y el namespace ahora son <code>homlity</code></strong>, y ese es un cambio incompatible hacia atrás: todo el código que ya use el SDK debe actualizar sus importaciones. Ninguna clase, método ni firma cambió — <strong>solo el namespace</strong>.</p>
+        <div class="code"><div class="code-head"><span>antes → después</span><button class="copy" type="button">copiar</button></div><pre><span class="cm">- composer require codwelt/sdk-simi</span>
++ composer require homlity/sdk-simi
+
+<span class="cm">- use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;</span>
++ use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;</pre></div>
+        <p>Un solo comando actualiza todas las referencias de tu proyecto, y después basta con <code>composer dump-autoload</code>:</p>
+        <div class="code"><div class="code-head"><span>terminal</span><button class="copy" type="button">copiar</button></div><pre>grep -rl <span class="str">'Codwelt\\SIMI\\SDK'</span> app/ config/ resources/ \
+  | xargs sed -i <span class="str">''</span> <span class="str">'s/Codwelt\\SIMI\\SDK/Homlity\\SIMI\\SDK/g'</span>   <span class="cm"># macOS</span>
+
+composer dump-autoload</pre></div>
+        <div class="note warn">
+          <span class="label">Corresponde una versión mayor</span>
+          <p>Cambiar el namespace rompe la compatibilidad hacia atrás, así que la versión indicada es <strong><code>v3.0.0</code></strong>. Publica ese tag antes de usar la restricción <code>^3.0</code>; mientras no exista, apunta a <code>dev-master</code>.</p>
+        </div>
 
         <h3>Instalar desde el repositorio</h3>
         <p>Si trabajas contra un fork, una rama de desarrollo o un Packagist privado, declara el repositorio VCS en tu <code>composer.json</code>:</p>
@@ -379,13 +396,13 @@ footer p{margin:0;color:var(--text-faint);font-size:14px}
     { <span class="str">"type"</span>: <span class="str">"vcs"</span>, <span class="str">"url"</span>: <span class="str">"https://github.com/homlity/sdk-simi.git"</span> }
   ],
   <span class="str">"require"</span>: {
-    <span class="str">"codwelt/sdk-simi"</span>: <span class="str">"^2.5"</span>
+    <span class="str">"homlity/sdk-simi"</span>: <span class="str">"^3.0"</span>
   }
 }</pre></div>
         <p>Para fijar una versión exacta usa cualquiera de los tags publicados: <code>v2.5.7</code>, <code>v2.5.6</code>, <code>v2.5.5</code>…</p>
 
         <h3>Autoload</h3>
-        <p>El paquete usa PSR-4: el namespace <code>Codwelt\SIMI\SDK\</code> apunta a <code>src/</code>. Basta con incluir el autoloader de Composer.</p>
+        <p>El paquete usa PSR-4: el namespace <code>Homlity\SIMI\SDK\</code> apunta a <code>src/</code>. Basta con incluir el autoloader de Composer.</p>
         <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>require __DIR__ . <span class="str">'/vendor/autoload.php'</span>;</pre></div>
       </section>
 
@@ -419,7 +436,7 @@ footer p{margin:0;color:var(--text-faint);font-size:14px}
         <p>El SDK no recibe el token: recibe un objeto que sabe dónde encontrarlo. Así puedes leerlo del entorno, de la base de datos, de un gestor de secretos o de la configuración multi-sitio sin tocar el SDK.</p>
         <div class="code"><div class="code-head"><span>TokenSimiProvider.php</span><button class="copy" type="button">copiar</button></div><pre>&lt;?php
 
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+use Homlity\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
 
 class TokenSimiProvider implements TokenServiceProviderRespository
 {
@@ -433,7 +450,7 @@ class TokenSimiProvider implements TokenServiceProviderRespository
         <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>&lt;?php
 require __DIR__ . <span class="str">'/vendor/autoload.php'</span>;
 
-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
 
 $provider = ApiServiceProvider::build();
 $provider-&gt;setTokenProvider(new TokenSimiProvider());   <span class="cm">// valida el token aquí</span>
@@ -758,7 +775,7 @@ $similares = (new ObtenedorInmueblesSimilaresService($api))-&gt;obtener($detalle
 
         <h3><code>ObtenedorInmueblesSimilaresService</code></h3>
         <p>Devuelve inmuebles parecidos a uno dado — misma zona, mismo tipo, misma gestión — descartando el original. Es el bloque «También te puede interesar» de la ficha.</p>
-        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Homlity\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
 
 $servicio = new ObtenedorInmueblesSimilaresService($api);
 
@@ -792,7 +809,7 @@ $similares = $servicio-&gt;obtener($detalle, 5);   <span class="cm">// devuelve 
 
         <h3><code>PaginatorHTML</code></h3>
         <p>Genera el HTML de la paginación, con clases compatibles con Bootstrap, o te entrega las páginas como array si prefieres maquetarlo tú.</p>
-        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Application\Models\PaginatorHTML;
+        <div class="code"><div class="code-head"><span>php</span><button class="copy" type="button">copiar</button></div><pre>use Homlity\SIMI\SDK\Application\Models\PaginatorHTML;
 
 $p = $resultado[<span class="str">'paginador'</span>];
 
@@ -823,8 +840,8 @@ if ($p !== null &amp;&amp; $p-&gt;totalPorPagina() &gt; 0) {
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
 
 class SimiServiceProvider extends ServiceProvider
 {
@@ -870,7 +887,7 @@ public function show(string $codigo)
         <p>Un shortcode <code>[simi_destacados total="6"]</code> con caché por <em>transient</em>:</p>
         <div class="code"><div class="code-head"><span>simi-inmuebles.php</span><button class="copy" type="button">copiar</button></div><pre>require_once __DIR__ . <span class="str">'/vendor/autoload.php'</span>;
 
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
 
 function simi_api() {
     static $api = null;
@@ -920,7 +937,7 @@ add_shortcode(<span class="str">'simi_destacados'</span>, <span class="str">'sim
         <p>El API de SIMI es la parte lenta de cualquier página que lo consuma, y el SDK no define <em>timeouts</em> de cURL. <strong>Cachea siempre.</strong></p>
         <p>Como los servicios del SDK dependen de la abstracción <code>ApiFachadaRepository</code>, puedes envolver la fachada real en un decorador con caché sin cambiar nada más de tu código.</p>
 
-        <div class="code"><div class="code-head"><span>ApiSimiConCache.php</span><button class="copy" type="button">copiar</button></div><pre>use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+        <div class="code"><div class="code-head"><span>ApiSimiConCache.php</span><button class="copy" type="button">copiar</button></div><pre>use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
 
 class ApiSimiConCache extends ApiFachadaRepository
 {

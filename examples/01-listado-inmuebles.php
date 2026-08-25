@@ -6,7 +6,7 @@
 
 require __DIR__ . '/00-bootstrap.php';
 
-use Codwelt\SIMI\SDK\Application\Models\PaginatorHTML;
+use Homlity\SIMI\SDK\Application\Models\PaginatorHTML;
 
 $api = simi_api();
 

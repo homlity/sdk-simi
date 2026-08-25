@@ -11,8 +11,8 @@
 
 require __DIR__ . '/00-bootstrap.php';
 
-use Codwelt\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
-use Codwelt\SIMI\SDK\Application\ObtenedorUrlFichaInmuebleService;
+use Homlity\SIMI\SDK\Application\ObtenedorInmueblesSimilaresService;
+use Homlity\SIMI\SDK\Application\ObtenedorUrlFichaInmuebleService;
 
 $api = simi_api();
 

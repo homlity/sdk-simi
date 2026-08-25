@@ -12,8 +12,8 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Codwelt\SIMI\SDK\Domain\Providers\ApiServiceProvider;
-use Codwelt\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
+use Homlity\SIMI\SDK\Domain\Providers\ApiServiceProvider;
+use Homlity\SIMI\SDK\Domain\Providers\TokenServiceProviderRespository;
 
 /**
  * El SDK no recibe el token directamente: recibe un objeto que sabe obtenerlo.
@@ -38,7 +38,7 @@ class TokenSimiEnvProvider implements TokenServiceProviderRespository
 /**
  * Devuelve la fachada del API lista para usar.
  *
- * @return \Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada
+ * @return \Homlity\SIMI\SDK\InfraStructure\API\ApiFachada
  */
 function simi_api()
 {

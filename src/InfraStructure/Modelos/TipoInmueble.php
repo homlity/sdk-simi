@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
+namespace Homlity\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class TipoInmueble
- * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
+ * @package Homlity\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class TipoInmueble implements \JsonSerializable

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\Domain\Providers;
+namespace Homlity\SIMI\SDK\Domain\Providers;
 
-use Codwelt\SIMI\SDK\Domain\API\ApiFachadaRepository;
+use Homlity\SIMI\SDK\Domain\API\ApiFachadaRepository;
 
 /**
  * Class ApiServiceProviderRepository
- * @package Codwelt\SIMI\SDK\Domain\Providers
+ * @package Homlity\SIMI\SDK\Domain\Providers
  * @author Juan Diaz <iam@furiosojack.com>
  */
 abstract class ApiServiceProviderRepository
@@ -68,7 +68,7 @@ abstract class ApiServiceProviderRepository
     {
         if($this->tokenProvider == null){
             throw new \Exception("No a seteado el Proveedor del token por favor use le metodo setTokenProvider 
-            con una instancia de la interfaz  Codwelt\SIMI\SDK\InfraStructure\Providers\Repository\TokenServiceProviderRespository" );
+            con una instancia de la interfaz  Homlity\SIMI\SDK\InfraStructure\Providers\Repository\TokenServiceProviderRespository" );
         }
 
         return $this->api;

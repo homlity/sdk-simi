@@ -5,6 +5,16 @@ Todos los notables cambios de este proyecto estaran documentados en este archivo
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-08-24
+### Changed
+- **BREAKING**: el paquete pasa de `codwelt/sdk-simi` a `homlity/sdk-simi` y el namespace raíz de
+  `Codwelt\SIMI\SDK\` a `Homlity\SIMI\SDK\`. Los proyectos que ya usan el SDK deben actualizar sus
+  sentencias `use` y ejecutar `composer dump-autoload`. No cambió ninguna clase, método ni firma.
+
+### Added
+- Documentación completa para desarrolladores en `README.md` y en `docs/index.html`.
+- Carpeta `examples/` con ocho ejemplos ejecutables desde la terminal.
+
 ## [2.5.5] - 2025-10-17
 ### Fixed
 - Se hace correcion de configuracion de sincronizacion

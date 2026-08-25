@@ -1,12 +1,12 @@
 <?php
-namespace Codwelt\SIMI\SDK\Tests\InsfraStructure;
-use Codwelt\SIMI\SDK\InfraStructure\API\ApiFachada;
-use Codwelt\SIMI\SDK\InfraStructure\Requests\RequestEstadoInmuebles;
-use Codwelt\SIMI\SDK\Tests\TestCase;
+namespace Homlity\SIMI\SDK\Tests\InsfraStructure;
+use Homlity\SIMI\SDK\InfraStructure\API\ApiFachada;
+use Homlity\SIMI\SDK\InfraStructure\Requests\RequestEstadoInmuebles;
+use Homlity\SIMI\SDK\Tests\TestCase;
 
 /**
  * Class RequestTest
- * @package Codwelt\SIMI\SDK\Tests\InsfraStructure
+ * @package Homlity\SIMI\SDK\Tests\InsfraStructure
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class RequestHTTPTest extends TestCase

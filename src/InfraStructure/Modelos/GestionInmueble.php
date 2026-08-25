@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Codwelt\SIMI\SDK\InfraStructure\Modelos;
+namespace Homlity\SIMI\SDK\InfraStructure\Modelos;
 
 /**
  * Class GestionInmueble
- * @package Codwelt\SIMI\SDK\InfraStructure\Modelos
+ * @package Homlity\SIMI\SDK\InfraStructure\Modelos
  * @author Juan Diaz <iam@furiosojack.com>
  */
 class GestionInmueble implements \JsonSerializable

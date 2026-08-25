@@ -1,9 +1,9 @@
 <?php
-namespace Codwelt\SIMI\SDK\Domain\Providers;
+namespace Homlity\SIMI\SDK\Domain\Providers;
 
 /**
  * Class ApiServiceProviderRespository
- * @package Codwelt\SIMI\SDK\InfraStructure\Providers\Repository
+ * @package Homlity\SIMI\SDK\InfraStructure\Providers\Repository
  * @author Juan Diaz <iam@furiosojack.com>
  */
 interface TokenServiceProviderRespository
